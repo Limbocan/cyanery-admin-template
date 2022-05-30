@@ -8,12 +8,26 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "vue": "^3.2.25"
+    "axios": "^0.27.2",
+    "cyanery-menu": "^1.0.6",
+    "vue": "^3.2.25",
+    "vue-router": "^4.0.15"
   },
   "devDependencies": {
+    "@types/node": "^17.0.35",
+    "@typescript-eslint/eslint-plugin": "^5.26.0",
+    "@typescript-eslint/parser": "^5.26.0",
     "@vitejs/plugin-vue": "^2.3.3",
+    "eslint": "^8.16.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.2.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-vue": "^9.0.1",
+    "sass": "^1.52.1",
     "typescript": "^4.5.4",
     "vite": "^2.9.9",
+    "vite-plugin-eslint": "^1.6.1",
     "vue-tsc": "^0.34.7"
   }
 }

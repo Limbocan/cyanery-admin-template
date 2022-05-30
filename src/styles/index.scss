@@ -1,0 +1,80 @@
+@import './layout.scss';
+
+// reset
+html {
+  box-sizing: border-box;
+}
+
+*:not(input) {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+*[hide] {
+  display: none;
+}
+
+*[disabled] {
+  opacity: .5;
+  pointer-events: none;
+}
+
+html,
+body,
+#app {
+  width: 100%;
+  height: 100%;
+}
+
+html {
+  // 滚动条样式
+  ::-webkit-scrollbar {
+    width: 8px;
+    background-color: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: #c1c1c1;
+
+    &:hover {
+      background-color: #a8a8a8;
+    }
+
+    &:active {
+      background-color: #787878;
+    }
+  }
+
+  & {
+    scrollbar-width: thin;
+    scrollbar-color: #c1c1c1 #eee;
+  }
+}
+
+
+/* 页面切换 */
+.fade-enter-active {
+  animation: fadeChange .5s ease-in-out forwards reverse;
+}
+
+.fade-leave-active {
+  animation: fadeChange .5s ease-in-out forwards;
+}
+
+@keyframes fadeChange {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}

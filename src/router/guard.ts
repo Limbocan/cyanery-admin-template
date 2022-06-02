@@ -74,11 +74,15 @@ const filterRoute = (
   routes: AppRouteRecordRaw[],
   role: any
 ): AppRouteRecordRaw[] => {
-  return routes.filter((node) => {
-    const { meta } = node
-    const { roles }: any = meta || {}
-    if (!roles || roles?.includes('*')) return true
-    if (!node.children || node.children.length < 1) return roles.includes(role)
-    else return filterRoute(node.children, role)
+  return routes.filter((node: AppRouteRecordRaw) => {
+    const { roles } = node
+    if (node.children && node.children.length) {
+      const _filteRoute = filterRoute(node.children, role)
+      if (_filteRoute.length < 1) return false
+      node.children = _filteRoute
+    }
+    if (!roles || roles.length < 1 || roles?.includes('*')) return true
+    if (!roles.includes(role)) return false
+    else return true
   })
 }

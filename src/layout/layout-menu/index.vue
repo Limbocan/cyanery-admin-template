@@ -11,27 +11,26 @@
       active-text-corlor="#248afd"
       close-width="var(--menu-close-width)"
       width="100%"
-      theme="primary"
+      theme="dark"
       @menu-click="menuClick"
     >
-      <!-- <template #icon="{ data }">
-        <svg
-          width="16"
-          height="16"
-          class="menu-icon"
-        ><use :xlink:href="data.path" /></svg>
-      </template> -->
+      <template #icon="{ data }">
+        <svg class="menu-icon">
+          <use :xlink:href="'#cyanery-' + data.icon" />
+        </svg>
+      </template>
     </CyMenu>
   </div>
 </template>
 
 <script setup>
 import { computed } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { menuState } from '@/state/menu-state'
 import CyMenu from 'cyanery-menu'
 
 const route = useRoute()
+const router = useRouter()
 const useMenuState = menuState()
 
 const active = computed(() => {
@@ -48,15 +47,21 @@ const formatMenu = (menus = []) => {
   const result = []
   menus.filter(menu => !menu.hidden).forEach(menu => {
     const _hasChild = menu.children && menu.children.length
-    const _menu = { ...menu, name: menu.meta.title, children: _hasChild ? [] : null }
+    const _menu = {
+      ...menu,
+      name: menu.meta.title,
+      routeName: menu.name,
+      children: _hasChild ? [] : null
+    }
     if (_hasChild) _menu.children.push(...formatMenu(menu.children))
     result.push(_menu)
   })
+  result.sort((p, n) => p.order - n.order)
   return result
 }
 
 const menuClick = (menu) => {
-  console.log(menu)
+  if (!menu.children) router.push({ name: menu.routeName })
 }
 
 </script>

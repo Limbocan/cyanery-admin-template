@@ -4,9 +4,10 @@ import { LAYOUT } from '../constant'
 const route: AppRouteRecordRaw = {
   path: '/permission',
   name: 'Permission',
+  icon: 'fuwuqi',
+  order: 2,
   meta: {
     title: '权限',
-    roles: ['*'],
   },
   redirect: { name: 'Role' },
   component: LAYOUT,
@@ -14,11 +15,20 @@ const route: AppRouteRecordRaw = {
     {
       path: 'role',
       name: 'Role',
+      roles: ['*'],
       meta: {
         title: '需要权限',
-        roles: ['*'],
       },
       component: () => import('@/views/permission/role-page.vue'),
+    },
+    {
+      path: 'normal',
+      name: 'Normal',
+      roles: ['*'],
+      meta: {
+        title: '不需要权限',
+      },
+      component: () => import('@/views/permission/normal-page.vue'),
     },
   ],
 }

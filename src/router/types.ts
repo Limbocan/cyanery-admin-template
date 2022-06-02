@@ -9,43 +9,18 @@ export type Component<T = any> =
 
 // @ts-ignore
 export interface AppRouteRecordRaw extends Omit<RouteRecordRaw, 'meta'> {
-  name: String
+  name: string
   meta: RouteMeta
   component?: Component | string
   components?: Component
   children?: AppRouteRecordRaw[]
-  hidden?: Boolean
+  hidden?: boolean
+  disabled?: boolean
+  order?: number
   props?: any
+  icon?: string
+  roles?: string[]
   fullPath?: string
 }
 
-export interface Menu {
-  name: string
-
-  icon?: string
-
-  path: string
-
-  // path contains param, auto assignment.
-  paramPath?: string
-
-  disabled?: boolean
-
-  children?: Menu[]
-
-  orderNo?: number
-
-  roles?: []
-
-  meta?: Partial<RouteMeta>
-
-  hideMenu?: boolean
-}
-
-export interface MenuModule {
-  orderNo?: number
-  menu: Menu
-}
-
-// export type AppRouteModule = RouteModule | AppRouteRecordRaw;
 export type AppRouteModule = AppRouteRecordRaw

@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="[useMenuState.getCollapse() ? 'open-logo' : 'close-logo']"
+    :class="[menuState.getCollapse() ? 'open-logo' : 'close-logo']"
     class="header-logo"
   >
     <img
@@ -9,16 +9,16 @@
       class="logo-img"
     >
     <h3 class="logo-title">
-      Cyanery
+      CYANERY
     </h3>
   </div>
 </template>
 
 <script setup>
-import { menuState } from '@/state/menu-state'
+import { useMenuState } from '@/state/menu-state'
 import logoImg from '@/assets/logo.png'
 
-const useMenuState = menuState()
+const menuState = useMenuState()
 
 </script>
 

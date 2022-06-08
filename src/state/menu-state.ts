@@ -6,13 +6,15 @@ const _menuState = reactive({
   isDoneRoute: false
 })
 
-export const menuState = () => {
+export const useMenuState = () => {
   const state = reactive({}) as any
 
+  // 设置菜单关闭
   state.setCollapse = (value: boolean) => {
     _menuState.menuOpen = value
   }
 
+  // 获取菜单关闭/展开
   state.getCollapse = ():boolean => _menuState.menuOpen
 
   // 设置权限路由加载状态
@@ -32,3 +34,5 @@ export const menuState = () => {
 
   return state
 }
+
+export default useMenuState

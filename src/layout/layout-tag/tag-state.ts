@@ -1,6 +1,6 @@
 import { reactive } from 'vue'
 
-export const tagState = () => {
+export const useTagState = () => {
   const state = reactive({
     tagList: []
   })

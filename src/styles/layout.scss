@@ -2,6 +2,7 @@
 .layout-body {
   width: 100%;
   height: 100%;
+  background: var(--content-bg-color);
 
   .layout-header {
     position: absolute;
@@ -15,8 +16,69 @@
     font-size: 22px;
     color: var(--header-color);
     background-color: var(--header-bg-color);
-    box-shadow: 0 0 6px -4px #00000070;
+    box-shadow: 0 0 6px -4px #00000038;
     z-index: 3;
+    
+    // 展开/收起菜单 按钮
+    .collapse-btn {
+      float: left;
+      width: var(--header-height);
+      height: var(--header-height);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+
+      .svg-icon {
+        width: 40%;
+        height: 40%;
+        fill: var(--header-color);
+      }
+    }
+
+    // 右边工具栏
+    .header-right {
+      position: absolute;
+      right: 0;
+      top: 0;
+      height: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+      padding-right: 8px;
+
+      .header-item {
+        --header-icon-gap: 4px;
+        height: calc(var(--header-height) * 0.7);
+        width: calc(var(--header-height) * 0.7);
+        border-radius: 4px;
+        transition: background .2s ease-in-out;
+        &:hover {
+          background-color: var(--header-color);
+        }
+
+        .header-icon {
+          padding: var(--header-icon-gap);
+          width: 100%;
+          height: 100%;
+          cursor: pointer;
+
+          &.circle-icon {
+            border-radius: 50%;
+          }
+
+          &.bg-icon {
+            fill: var(--header-bg-color);
+            background-color: var(--header-color);
+          }
+        }
+      }
+
+      .header-item+.header-item {
+        margin-left: 8px;
+      }
+    }
   }
 
   .header-logo {
@@ -31,12 +93,13 @@
     .logo-img {
       width: calc(var(--header-height) - 4px);
       height: calc(var(--header-height) - 4px);
-      margin-right: 10px;
+      margin-right: 16px;
     }
 
     .logo-title {
-      font-family: fantasy, sans-serif;
-      font-weight: lighter;    
+      font-family: fangsong, sans-serif;
+      font-size: 26px;
+      font-weight: bolder;   
     }
   }
   
@@ -44,7 +107,7 @@
     position: fixed;
     left: 0;
     bottom: 0;
-    width: var(--menu-width);
+    // width: var(--menu-width);
     // background-color: var(--menu-bg-color);
     z-index: 2;
 
@@ -78,7 +141,81 @@
 
     .content {
       flex: 1;
-      background: var(--content-bg-color);
+      padding: 12px;
+    }
+
+    .layout-tag {
+      --tag-height: 30px;
+      --tag-bg-color: #00000000;
+      --tag-item-color: #485b76;
+      --tag-item-bg-color: #fff;
+      --tag-active-color: #fff;
+
+      position: relative;
+      height: var(--tag-height);
+      min-height: var(--tag-height);
+      overflow: hidden;
+      background: var(--tag-bg-color);
+      padding-right: 120px;
+      box-shadow: 0 0px 6px -2px #0000000d;
+
+      .tag-list {
+        width: 100%;
+        height: 100%;
+
+        .tag-li {
+          --gap-size: 4px;
+          float: left;
+          border-radius: 3px;
+          font-size: 12px;
+          overflow: hidden;
+          cursor: pointer;
+          height: calc(var(--tag-height) - calc(var(--gap-size) * 2));
+          line-height: calc(var(--tag-height) - calc(var(--gap-size) * 2));
+          border: 1px solid #e9eaec;
+          padding: 0 4px 0 8px;
+          vertical-align: middle;
+          list-style: none;
+          color: var(--tag-item-bg-color);
+          transition: background 0.2s ease-in;
+          margin: var(--gap-size);
+
+          &:not(.active):hover {
+            background: #f8f8f8;
+          }
+
+          &.active {
+            background-color: var(--header-color);
+            .tag-li-title {
+              color: var(--tag-active-color);
+            }
+            .tag-li-icon {
+              &:hover {
+                color: var(--tag-active-color);
+              }
+            }
+          }
+
+          .tag-li-title {
+            float: left;
+            height: 100%;
+            max-width: 80px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            margin-right: 5px;
+            color: var(--tag-item-color);
+            text-decoration: none;
+          }
+
+          .tag-li-icon {
+            color: var(--tag-item-color);
+            &:hover {
+              color: var(--header-color);
+            }
+          }
+        }
+      }
     }
   }
 }
@@ -101,7 +238,6 @@
     top: var(--header-height);
   }
 }
-
 
 .layout-left.layout-body {
 

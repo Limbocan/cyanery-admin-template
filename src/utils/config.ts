@@ -22,8 +22,8 @@ type systermType = {
 
 export const themeConfig: { [key: string]: themeType } = {
   primary: {
-    headerHeight: '52px',
-    headerColor: '#4B49AC',
+    headerHeight: '46px',
+    headerColor: '#2acbd9',
     headerBgColor: '#fff',
     menuWidth: '220px',
     menuBgColor: '#fff',

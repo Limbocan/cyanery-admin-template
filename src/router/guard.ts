@@ -1,8 +1,8 @@
 import { asyncRoutes } from './index'
 import type { RouteRecordRaw } from 'vue-router'
 import type { AppRouteRecordRaw } from './types'
-import { userState } from '../state/user-state'
-import { menuState } from '../state/menu-state'
+import { useUserState } from '../state/user-state'
+import { useMenuState } from '../state/menu-state'
 
 // 白名单应该包含基本静态路由
 export const WHITE_NAME_LIST: string[] = []
@@ -14,8 +14,8 @@ export const addWhiteList = (routes: any[]) => {
   })
 }
 
-const useUserState = userState()
-const useMenuState = menuState()
+const userState = useUserState()
+const menuState = useMenuState()
 
 // 创建路由守卫
 export const createRouterGuards = (router: any) => {
@@ -26,7 +26,7 @@ export const createRouterGuards = (router: any) => {
       next()
       return
     }
-    const token = useUserState.getToken()
+    const token = userState.getToken()
     if (!token || JSON.stringify(token) === '{}') {
       const redirectData = { name: 'Login', replace: true, query: {} }
       if (to.path) redirectData.query = { ...redirectData.query, redirect: to.path }
@@ -34,12 +34,12 @@ export const createRouterGuards = (router: any) => {
       return
     }
     // 已获取异步路由
-    if (useMenuState.getIsDone()) {
+    if (menuState.getIsDone()) {
       next()
       return
     }
 
-    const userRoutes = getPermissionRoute(useUserState.getRole())
+    const userRoutes = getPermissionRoute(userState.getRole())
     userRoutes.forEach((route: AppRouteRecordRaw) => {
       router.addRoute(route as unknown as RouteRecordRaw)
     })
@@ -65,7 +65,7 @@ export const createRouterGuards = (router: any) => {
 export const getPermissionRoute = (user: any) => {
   const role = user
   const roleRouts = filterRoute(asyncRoutes, role)
-  useMenuState.setAsyncRoute(roleRouts)
+  menuState.setAsyncRoute(roleRouts)
   return roleRouts
 }
 

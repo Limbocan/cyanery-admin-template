@@ -8,9 +8,9 @@
       background-color="var(--menu-bg-color)"
       active-color="#e7e7e7"
       text-color="#787878"
-      active-text-corlor="#248afd"
+      active-text-corlor="var(--header-color)"
       close-width="var(--menu-close-width)"
-      width="100%"
+      width="var(--menu-width)"
       theme="dark"
       @menu-click="menuClick"
     >
@@ -26,20 +26,20 @@
 <script setup>
 import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { menuState } from '@/state/menu-state'
+import { useMenuState } from '@/state/menu-state'
 import CyMenu from 'cyanery-menu'
 
 const route = useRoute()
 const router = useRouter()
-const useMenuState = menuState()
+const menuState = useMenuState()
 
 const active = computed(() => {
-  return route.path
+  return route.name
 })
-const open = computed(() => useMenuState.getCollapse())
+const open = computed(() => menuState.getCollapse())
 
 const menuData = computed(() => {
-  const _routes = useMenuState.getRoleRoute() || []
+  const _routes = menuState.getRoleRoute() || []
   return formatMenu(_routes)
 })
 
@@ -50,6 +50,7 @@ const formatMenu = (menus = []) => {
     const _menu = {
       ...menu,
       name: menu.meta.title,
+      key: menu.name,
       routeName: menu.name,
       children: _hasChild ? [] : null
     }

@@ -9,7 +9,7 @@
       class="logo-img"
     >
     <h3 class="logo-title">
-      CYANERY
+      Cyanery
     </h3>
   </div>
 </template>

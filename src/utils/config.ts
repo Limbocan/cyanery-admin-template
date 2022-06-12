@@ -22,8 +22,9 @@ type systermType = {
 
 export const themeConfig: { [key: string]: themeType } = {
   primary: {
+    layoutDuration: '.3s',
     headerHeight: '46px',
-    headerColor: '#2acbd9',
+    headerColor: '#18a8fd',
     headerBgColor: '#fff',
     menuWidth: '220px',
     menuBgColor: '#fff',
@@ -35,14 +36,13 @@ export const themeConfig: { [key: string]: themeType } = {
 export const getThemeStyle = computed(() => {
   const _theme: themeType = themeConfig[systermConfig.theme] || {}
   const style = {} as any
-  Object.keys(_theme).forEach(prop => { style[getStyleFormat(prop)] = _theme[prop] })
+  Object.keys(_theme).forEach(prop => { style[formatStyleProp(prop)] = _theme[prop] })
   return style
 })
 
-const getStyleFormat = (prop: string) => `--${prop.replace(/[A-Z]/g, '-$&').toLowerCase()}`
+const formatStyleProp = (prop: string) => `--${prop.replace(/[A-Z]/g, '-$&').toLowerCase()}`
 
 export const systermConfig: systermType = reactive({
   layout: 'layout-top',
-  fixedHead: true,
   theme: 'primary'
 })

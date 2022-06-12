@@ -14,6 +14,9 @@
       theme="dark"
       @menu-click="menuClick"
     >
+      <template #header>
+        <logo v-show="['layout-left', 'layout-header-scroll'].includes(systermConfig.layout)" />
+      </template>
       <template #icon="{ data }">
         <svg class="menu-icon">
           <use :xlink:href="'#cyanery-' + data.icon" />
@@ -27,7 +30,9 @@
 import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useMenuState } from '@/state/menu-state'
+import { systermConfig } from '@/utils/config'
 import CyMenu from 'cyanery-menu'
+import logo from '../layout-header/logo.vue'
 
 const route = useRoute()
 const router = useRouter()

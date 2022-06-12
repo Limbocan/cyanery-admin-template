@@ -1,6 +1,6 @@
 <template>
-  <div class="layout-header">
-    <logo />
+  <div :class="{ 'layout-header': true, 'collapse-header': !collapse }">
+    <logo v-show="['layout-top'].includes(systermConfig.layout)" />
     <!-- 折叠按钮 -->
     <div
       class="collapse-btn"
@@ -22,46 +22,58 @@
 
     <div class="header-right">
       <div class="header-item">
-        <svg class="header-icon circle-icon bg-icon">
+        <svg class="header-icon circle-icon">
           <use xlink:href="#cyanery-huihua" />
         </svg>
       </div>
       <div class="header-item">
-        <svg class="header-icon circle-icon bg-icon">
+        <svg
+          class="header-icon circle-icon"
+          @click="openSetting"
+        >
           <use xlink:href="#cyanery-shezhi1" />
         </svg>
       </div>
       <div class="header-item">
-        <svg class="header-icon circle-icon bg-icon">
+        <svg class="header-icon circle-icon">
           <use xlink:href="#cyanery-wode" />
         </svg>
       </div>
       <div class="header-item">
-        <svg class="header-icon circle-icon bg-icon">
+        <svg class="header-icon circle-icon">
           <use xlink:href="#cyanery-tuichu" />
         </svg>
       </div>
     </div>
+    <layout-setting ref="layoutSettingRef" />
   </div>
 </template>
 
 <script setup>
-import { computed, onMounted } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { useMenuState } from '@/state/menu-state'
+import { systermConfig } from '@/utils/config'
 import logo from './logo.vue'
+import layoutSetting from '../layout-setting.vue'
 
+const layoutSettingRef = ref(null)
 const menuState = useMenuState()
 const collapse = computed(() => menuState.getCollapse())
-
-// 侧边栏折叠
-const collapseChage = () => {
-  menuState.setCollapse(!collapse.value)
-}
 
 onMounted(() => {
   if (document.body.clientWidth < 1500) {
     collapseChage()
   }
 })
+
+// 侧边栏折叠
+const collapseChage = () => {
+  menuState.setCollapse(!collapse.value)
+}
+
+// 打开设置
+const openSetting = () => {
+  layoutSettingRef.value.openDrawer()
+}
 
 </script>

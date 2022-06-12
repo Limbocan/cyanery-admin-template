@@ -1,14 +1,12 @@
 <template>
   <div
-    :class="[systermConfig.layout, systermConfig.fixedHead ? 'layout-header-fixed' : '']"
+    :class="['layout-body', systermConfig.layout]"
     :style="getThemeStyle"
-    class="layout-body"
   >
     <layout-header />
     <layout-menu />
     <div
-      :class="menuState.getCollapse() ? 'full-content' : 'coll-content'"
-      class="layout-content"
+      :class="['layout-content', menuState.getCollapse() ? 'full-content' : 'collapse-content']"
     >
       <layout-tag />
       <div class="content">

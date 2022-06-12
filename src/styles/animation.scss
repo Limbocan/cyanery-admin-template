@@ -1,0 +1,68 @@
+
+// 页面切换
+.fade-enter-active {
+  animation: fadeChange .5s ease-in-out forwards reverse;
+}
+
+.fade-leave-active {
+  animation: fadeChange .5s ease-in-out forwards;
+}
+
+@keyframes fadeChange {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+// drawer-animation
+.drawer-enter-active {
+  animation: drawerChange .2s ease-in-out forwards reverse;
+  .drawer-row {
+    animation: drawerContentWidth .2s ease-in-out forwards reverse;
+  }
+  .drawer-column {
+    animation: drawerContentHeight .2s ease-in-out forwards reverse;
+  }
+}
+
+.drawer-leave-active {
+  animation: drawerChange .2s ease-in-out forwards;
+  .drawer-row {
+    animation: drawerContentWidth .2s ease-in-out forwards;
+  }
+  .drawer-column {
+    animation: drawerContentHeight .2s ease-in-out forwards;
+  }
+}
+
+@keyframes drawerChange {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes drawerContentWidth {
+  from {
+    width: var(--drawer-content-width);
+  }
+  to {
+    width: 0;
+  }
+}
+
+@keyframes drawerContentHeight {
+  from {
+    height: var(--drawer-content-height);
+  }
+  to {
+    height: 0;
+  }
+}

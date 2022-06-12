@@ -1,3 +1,4 @@
+@import './animation.scss';
 @import './layout.scss';
 
 // reset
@@ -56,25 +57,5 @@ html {
   & {
     scrollbar-width: thin;
     scrollbar-color: #c1c1c1 #eee;
-  }
-}
-
-
-/* 页面切换 */
-.fade-enter-active {
-  animation: fadeChange .5s ease-in-out forwards reverse;
-}
-
-.fade-leave-active {
-  animation: fadeChange .5s ease-in-out forwards;
-}
-
-@keyframes fadeChange {
-  from {
-    opacity: 1;
-  }
-
-  to {
-    opacity: 0;
   }
 }

@@ -11,6 +11,10 @@ type themeType = {
   menuWidth: string
   // 菜单背景色
   menuBgColor: string
+  // 菜单文字颜色
+  menuTextColor: string
+  // 菜单展开背景色
+  menuOpenBgColor: string
   // 菜单收起宽度
   menuCloseWidth: string
   // 内容区背景色
@@ -31,6 +35,8 @@ export const themeConfig: { [key: string]: themeType } = {
     headerBgColor: '#fff',
     menuWidth: '220px',
     menuBgColor: '#fff',
+    menuTextColor: '#8c909a',
+    menuOpenBgColor: '#e3e5ee',
     menuCloseWidth: '42px',
     contentBgColor: '#F5F7FF'
   },
@@ -41,7 +47,9 @@ export const themeConfig: { [key: string]: themeType } = {
     headerColor: '#000000d9',
     headerBgColor: '#fff',
     menuWidth: '220px',
-    menuBgColor: '#001529',
+    menuBgColor: '#1e1e2f',
+    menuTextColor: '#8c909a',
+    menuOpenBgColor: '#3a3f51',
     menuCloseWidth: '42px',
     contentBgColor: '#F5F7FF'
   }
@@ -60,7 +68,7 @@ const formatStyleProp = (prop: string) => `--${prop.replace(/[A-Z]/g, '-$&').toL
 
 // 系统设置
 export const systermConfig: systermType = reactive({
-  layout: 'layout-top',
+  layout: 'layout-left',
   theme: 'light'
 })
 // 可选布局

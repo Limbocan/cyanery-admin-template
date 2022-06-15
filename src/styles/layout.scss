@@ -14,7 +14,6 @@
     justify-content: flex-start;
     align-items: center;
     font-size: 22px;
-    color: var(--header-color);
     background-color: var(--header-bg-color);
     box-shadow: 0 0 6px -4px #00000038;
     z-index: 3;
@@ -95,6 +94,7 @@
     justify-content: flex-start;
     align-items: center;
     padding: 0 12px;
+    color: var(--header-color);
 
     .logo-img {
       width: calc(var(--header-height) - 4px);
@@ -127,10 +127,11 @@
     }
   
     .header-logo {
-      padding: 0;
       background-color: var(--menu-bg-color);
+      transition: width var(--layout-duration) ease-in-out, padding var(--layout-duration) ease-in-out;
     
       &.close-logo {
+        padding: 0;
         width: var(--menu-close-width);
         overflow: hidden;
       }
@@ -289,10 +290,5 @@
   
   .layout-menu {
     top: 0;
-
-    .header-logo {
-      padding: 0;
-      background-color: var(--menu-bg-color);
-    }
   }
 }

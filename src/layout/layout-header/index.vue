@@ -22,11 +22,6 @@
 
     <div class="header-right">
       <div class="header-item">
-        <svg class="header-icon circle-icon">
-          <use xlink:href="#cyanery-huihua" />
-        </svg>
-      </div>
-      <div class="header-item">
         <svg
           class="header-icon circle-icon"
           @click="openSetting"

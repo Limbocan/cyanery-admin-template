@@ -6,6 +6,6 @@ import Drawer from './drawer/index.vue'
 export default {
   install(app: App) {
     app.component('KeepAlives', KeepAlives)
-    app.component('Drawer', Drawer)
+    app.component('CyDrawer', Drawer)
   }
 }

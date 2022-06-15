@@ -1,52 +1,60 @@
 <template>
-  <transition
-    name="drawer"
-    mode="out-in"
+  <teleport
+    :disabled="!props.toBody"
+    to="body"
   >
-    <div
-      v-show="props.show"
-      class="drawer-wrapper"
+    <transition
+      name="drawer"
+      mode="out-in"
     >
       <div
-        class="mask"
-        @click="close"
-      />
-      <div
-        :style="drawerStyle"
-        :class="['drawer-content', ['top', 'bottom'].includes(props.position) ? 'drawer-column' : 'drawer-row']"
+        v-show="props.modelValue"
+        class="drawer-wrapper"
       >
-        <slot name="title">
-          <div class="drawer-title">
-            <svg
-              class="drawer-title-close"
-              @click="close"
-            >
-              <use xlink:href="#cyanery-CloseDefault" />
-            </svg>
-            <h4 class="drawer-title-label">
-              {{ props.title }}
-            </h4>
+        <div
+          class="mask"
+          @click="close"
+        />
+        <div
+          :style="drawerStyle"
+          :class="['drawer-content', ['top', 'bottom'].includes(props.position) ? 'drawer-column' : 'drawer-row']"
+        >
+          <slot name="header">
+            <div class="drawer-title">
+              <svg
+                class="drawer-title-close"
+                @click="close"
+              >
+                <use xlink:href="#cyanery-CloseDefault" />
+              </svg>
+              <h5 class="drawer-title-label">
+                {{ props.title }}
+              </h5>
+            </div>
+          </slot>
+          <div class="drawer-body">
+            <slot name="default" />
           </div>
-        </slot>
-        <slot name="default" />
+        </div>
       </div>
-    </div>
-  </transition>
+    </transition>
+  </teleport>
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { computed, watch } from 'vue'
 
 const props = defineProps({
-  show: { type: Boolean, default: false },
-  position: { type: String, default: 'right' },
-  maskClose: { type: Boolean, default: true },
+  modelValue: { type: Boolean, default: false },
+  position: { type: String, default: 'right' }, // 弹出位置
+  maskClose: { type: Boolean, default: true }, // 是否点击遮罩关闭
+  toBody: { type: Boolean, default: false }, // 是否挂载到body元素下
   size: { type: String, default: '30%' },
   title: { type: String, default: '' },
   background: { type: String, default: '#fff' }
 })
 
-const emits = defineEmits(['update:show'])
+const emits = defineEmits(['update:modelValue'])
 
 const drawerStyle = computed(() => {
   return {
@@ -56,8 +64,17 @@ const drawerStyle = computed(() => {
   }
 })
 
+watch(
+  () => props.modelValue,
+  (val) => {
+    const _body = document.querySelector('body')
+    if (val) _body.classList.add('body-lock-scroll')
+    else _body.classList.remove('body-lock-scroll')
+  }
+)
+
 const close = () => {
-  if (props.maskClose) emits('update:show', false)
+  if (props.maskClose) emits('update:modelValue', false)
 }
 
 </script>
@@ -79,6 +96,8 @@ const close = () => {
 
   .drawer-content {
     position: absolute;
+    display: flex;
+    flex-direction: column;
     background-color: var(--drawer-bg-color);
     overflow: hidden;
 
@@ -114,6 +133,11 @@ const close = () => {
         display: inline-block;
         margin-left: 12px;
       }
+    }
+
+    .drawer-body {
+      flex: 1;
+      overflow: auto;
     }
   }
 }

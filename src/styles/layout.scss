@@ -1,5 +1,9 @@
 
 .layout-body {
+  --header-z: 1;
+  --content-z: 2;
+  --menu-z: 3;
+
   width: 100%;
   height: 100%;
   background: var(--content-bg-color);
@@ -16,7 +20,7 @@
     font-size: 22px;
     background-color: var(--header-bg-color);
     box-shadow: 0 0 6px -4px #00000038;
-    z-index: 3;
+    z-index: var(--header-z);
     
     // 展开/收起菜单 按钮
     .collapse-btn {
@@ -94,7 +98,6 @@
     justify-content: flex-start;
     align-items: center;
     padding: 0 12px;
-    color: var(--header-color);
 
     .logo-img {
       width: calc(var(--header-height) - 4px);
@@ -106,6 +109,7 @@
       font-family: fangsong, sans-serif;
       font-size: 22px;
       font-weight: bolder;   
+      color: var(--main-color);
     }
   }
   
@@ -113,12 +117,13 @@
     position: fixed;
     left: 0;
     bottom: 0;
-    // width: var(--menu-width);
-    // background-color: var(--menu-bg-color);
-    z-index: 2;
+    background-color: var(--menu-bg-color);
+    overflow: hidden;
+    z-index: var(--menu-z);
 
     .cy-menu {
       box-shadow: none;
+      transition: width var(--layout-duration) ease-in-out;
 
       .menu-icon {
         width: 100%;
@@ -138,6 +143,80 @@
     }
   }
 
+  .layout-tag {
+    --tag-height: 30px;
+    --tag-bg-color: #00000000;
+    --tag-item-color: #485b76;
+    --tag-item-bg-color: #fff;
+    --tag-active-color: #fff;
+
+    position: relative;
+    height: var(--tag-height);
+    min-height: var(--tag-height);
+    overflow: hidden;
+    background: var(--tag-bg-color);
+    padding-right: 120px;
+    box-shadow: 0 0px 6px -2px #0000000d;
+
+    .tag-list {
+      width: 100%;
+      height: 100%;
+
+      .tag-li {
+        --gap-size: 4px;
+        float: left;
+        border-radius: 3px;
+        font-size: 12px;
+        overflow: hidden;
+        cursor: pointer;
+        height: calc(var(--tag-height) - calc(var(--gap-size) * 2));
+        line-height: calc(var(--tag-height) - calc(var(--gap-size) * 2));
+        border: 1px solid #e9eaec;
+        padding: 0 4px 0 8px;
+        vertical-align: middle;
+        list-style: none;
+        color: var(--tag-item-bg-color);
+        transition: background 0.2s ease-in;
+        margin: var(--gap-size);
+
+        &:not(.active):hover {
+          background: #f8f8f8;
+        }
+
+        &.active {
+          background-color: var(--header-color);
+          .tag-li-title {
+            color: var(--tag-active-color);
+          }
+          .tag-li-icon {
+            &:hover {
+              color: var(--tag-active-color);
+            }
+          }
+        }
+
+        .tag-li-title {
+          float: left;
+          height: 100%;
+          max-width: 80px;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          margin-right: 5px;
+          color: var(--tag-item-color);
+          text-decoration: none;
+        }
+
+        .tag-li-icon {
+          color: var(--tag-item-color);
+          &:hover {
+            color: var(--header-color);
+          }
+        }
+      }
+    }
+  }
+
   .layout-content {
     position: absolute;
     top: var(--header-height);
@@ -146,7 +225,7 @@
     display: flex;
     flex-direction: column;
     transition: left var(--layout-duration) ease-in-out;
-    z-index: 1;
+    z-index: var(--content-z);
 
     &.full-content {
       left: var(--menu-width);
@@ -158,83 +237,9 @@
 
     .content {
       flex: 1;
-      padding: 12px;
+      padding: 8px 10px;
       background: var(--content-bg-color);
       overflow: auto;
-    }
-
-    .layout-tag {
-      --tag-height: 30px;
-      --tag-bg-color: #00000000;
-      --tag-item-color: #485b76;
-      --tag-item-bg-color: #fff;
-      --tag-active-color: #fff;
-
-      position: relative;
-      height: var(--tag-height);
-      min-height: var(--tag-height);
-      overflow: hidden;
-      background: var(--tag-bg-color);
-      padding-right: 120px;
-      box-shadow: 0 0px 6px -2px #0000000d;
-
-      .tag-list {
-        width: 100%;
-        height: 100%;
-
-        .tag-li {
-          --gap-size: 4px;
-          float: left;
-          border-radius: 3px;
-          font-size: 12px;
-          overflow: hidden;
-          cursor: pointer;
-          height: calc(var(--tag-height) - calc(var(--gap-size) * 2));
-          line-height: calc(var(--tag-height) - calc(var(--gap-size) * 2));
-          border: 1px solid #e9eaec;
-          padding: 0 4px 0 8px;
-          vertical-align: middle;
-          list-style: none;
-          color: var(--tag-item-bg-color);
-          transition: background 0.2s ease-in;
-          margin: var(--gap-size);
-
-          &:not(.active):hover {
-            background: #f8f8f8;
-          }
-
-          &.active {
-            background-color: var(--header-color);
-            .tag-li-title {
-              color: var(--tag-active-color);
-            }
-            .tag-li-icon {
-              &:hover {
-                color: var(--tag-active-color);
-              }
-            }
-          }
-
-          .tag-li-title {
-            float: left;
-            height: 100%;
-            max-width: 80px;
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            margin-right: 5px;
-            color: var(--tag-item-color);
-            text-decoration: none;
-          }
-
-          .tag-li-icon {
-            color: var(--tag-item-color);
-            &:hover {
-              color: var(--header-color);
-            }
-          }
-        }
-      }
     }
   }
 }
@@ -266,6 +271,10 @@
 
   .layout-header {
     left: 0;
+
+    .header-logo .logo-title {
+      color: var(--header-color);
+    }
   }
   
   .layout-menu {
@@ -274,10 +283,6 @@
 }
 
 .layout-left.layout-body {
-
-  .layout-menu {
-    top: 0;
-  }
 
   .layout-header {
     left: var(--menu-width);

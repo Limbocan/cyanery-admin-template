@@ -8,7 +8,7 @@
     <div
       :class="['layout-content', menuState.getCollapse() ? 'full-content' : 'collapse-content']"
     >
-      <layout-tag />
+      <layout-tag v-if="systermConfig.tagPosition === 'content'" />
       <div class="content">
         <keep-alives />
       </div>

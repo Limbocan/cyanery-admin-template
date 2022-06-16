@@ -20,6 +20,8 @@
       </svg>
     </div>
 
+    <layout-tag v-if="systermConfig.tagPosition === 'header'" />
+
     <div class="header-right">
       <div class="header-item">
         <svg
@@ -48,6 +50,7 @@
 import { ref, computed, onMounted } from 'vue'
 import { useMenuState } from '@/state/menu-state'
 import { systermConfig } from '@/utils/config'
+import layoutTag from '../layout-tag/index.vue'
 import logo from './logo.vue'
 import layoutSetting from '../layout-setting.vue'
 

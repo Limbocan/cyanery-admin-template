@@ -37,26 +37,26 @@ body,
 html {
   // 滚动条样式
   ::-webkit-scrollbar {
-    width: 8px;
+    width: 6px;
     background-color: transparent;
   }
 
   ::-webkit-scrollbar-thumb {
     border-radius: 4px;
-    background-color: #c1c1c1;
+    background-color: #c1c1c1cd;
 
     &:hover {
-      background-color: #a8a8a8;
+      background-color: #a8a8a8aa;
     }
 
     &:active {
-      background-color: #787878;
+      background-color: #828080e4;
     }
   }
 
   & {
     scrollbar-width: thin;
-    scrollbar-color: #c1c1c1 #eee;
+    scrollbar-color: #c1c1c1d4 rgba(238, 238, 238, 0.908);
   }
 }
 

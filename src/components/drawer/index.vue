@@ -1,7 +1,7 @@
 <template>
   <teleport
-    :disabled="!props.toBody"
-    to="body"
+    :disabled="!props.toBody && props.toEle === 'body'"
+    :to="props.toEle"
   >
     <transition
       name="drawer"
@@ -27,9 +27,9 @@
               >
                 <use xlink:href="#cyanery-CloseDefault" />
               </svg>
-              <h5 class="drawer-title-label">
+              <h4 class="drawer-title-label">
                 {{ props.title }}
-              </h5>
+              </h4>
             </div>
           </slot>
           <div class="drawer-body">
@@ -48,7 +48,8 @@ const props = defineProps({
   modelValue: { type: Boolean, default: false },
   position: { type: String, default: 'right' }, // 弹出位置
   maskClose: { type: Boolean, default: true }, // 是否点击遮罩关闭
-  toBody: { type: Boolean, default: false }, // 是否挂载到body元素下
+  toBody: { type: Boolean, default: true }, // 是否挂载到body元素下
+  toEle: { type: String, default: 'body' },
   size: { type: String, default: '30%' },
   title: { type: String, default: '' },
   background: { type: String, default: '#fff' }

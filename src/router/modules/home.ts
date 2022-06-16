@@ -10,7 +10,7 @@ const route: AppRouteRecordRaw = {
   meta: {
     title: '主页',
   },
-  redirect: { name: 'Index' },
+  redirect: { name: 'Dashboard' },
   component: LAYOUT,
   children: [
     {

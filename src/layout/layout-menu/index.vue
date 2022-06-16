@@ -5,13 +5,13 @@
       :open="open"
       :data="menuData"
       :unique="true"
+      :theme="systermConfig.menuTheme"
       background-color="var(--menu-bg-color)"
       active-color="var(--menu-open-bg-color)"
       text-color="var(--menu-text-color)"
       active-text-corlor="var(--main-color)"
       close-width="var(--menu-close-width)"
       width="var(--menu-width)"
-      theme="dark"
       @menu-click="menuClick"
     >
       <template #header>

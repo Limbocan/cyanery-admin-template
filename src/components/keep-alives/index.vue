@@ -1,26 +1,19 @@
 <template>
-  <router-view
-    ref="viewRef"
-    v-slot="{ Component }"
-  >
+  <router-view v-slot="{ Component }">
     <transition
       :name="props.animation"
       mode="out-in"
     >
-      <keep-alive
-        ref="keepRef"
-      >
-        <component
-          :is="Component"
-          ref="comRef"
-        />
+      <keep-alive :include="keepAlives">
+        <component :is="Component" />
       </keep-alive>
     </transition>
   </router-view>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { computed } from 'vue'
+import { useTagState } from '@/state/tag-state'
 
 const props = defineProps({
   animation: {
@@ -28,10 +21,9 @@ const props = defineProps({
     default: 'fade'
   }
 })
+const tagState = useTagState()
 
-const viewRef = ref(null)
-const keepRef = ref(null)
-const comRef = ref(null)
+const keepAlives = computed(() => tagState.getKeepAlive())
 
 </script>
 

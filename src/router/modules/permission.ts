@@ -18,6 +18,7 @@ const route: AppRouteRecordRaw = {
       roles: ['*'],
       meta: {
         title: '需要权限',
+        keepAlive: true,
       },
       component: () => import('@/views/permission/role-page.vue'),
     },

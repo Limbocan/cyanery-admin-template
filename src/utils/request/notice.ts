@@ -1,6 +1,24 @@
-import { ElNotification } from 'element-plus'
-import { ElMessageBox } from 'element-plus'
+import { ElNotification, ElMessageBox } from 'element-plus'
 import { STATUS_CODE } from './option'
+// 消息参数类型
+declare type Position =
+  | 'top-right'
+  | 'top-left'
+  | 'bottom-right'
+  | 'bottom-left'
+declare type NotificationType = 'success' | 'warning' | 'info' | 'error' | ''
+
+// 消息参数接口
+interface noticeOption {
+  flag?: number
+  timeId?: number
+  msgInstance?: any
+  type: NotificationType
+  title: string
+  message: string
+  position: Position
+  duration?: number
+}
 
 /**
  * 退出登录提示信息
@@ -69,22 +87,3 @@ const repeatMsg = (params: noticeOption): boolean => {
     return item.title === params.title && item.message === params.message
   })
 }
-
-// 消息参数接口
-interface noticeOption {
-  flag?: number
-  timeId?: number
-  msgInstance?: any
-  type: NotificationType
-  title: string
-  message: string
-  position: Position
-  duration?: number
-}
-// 消息参数类型
-declare type Position =
-  | 'top-right'
-  | 'top-left'
-  | 'bottom-right'
-  | 'bottom-left'
-declare type NotificationType = 'success' | 'warning' | 'info' | 'error' | ''

@@ -2,14 +2,14 @@
  * URL配置
  */
 export const URL_OPTION: { [key: string]: string } = {
-  DEVOPS: import.meta.env.VITE_BASE_URL,
+  BASE: import.meta.env.VITE_BASE_URL,
   TEST: '/test',
 }
 /**
  * 服务项配置
  */
 export const SERVICE_OPTION: { [key: string]: string } = {
-  DEVOPS: import.meta.env.VITE_BASE_API,
+  BASE: import.meta.env.VITE_BASE_API,
   TEST: '',
 }
 

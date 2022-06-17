@@ -40,7 +40,7 @@ const tagList = computed(() => tagState.getTagList())
 watch(
   () => route.fullPath,
   () => {
-    const _tag = { title: route.meta.title, path: route.fullPath, name: route.name }
+    const _tag = { title: route.meta.title, path: route.fullPath, name: route.name, keepAlive: route.meta.keepAlive }
     if (!tagState.hasTag(_tag)) tagState.addTag(_tag)
   },
   { immediate: true }

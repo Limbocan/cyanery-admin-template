@@ -1,6 +1,7 @@
 <template>
   <div>
     role
+    <input v-model="value">
     <button @click="change">
       切换
     </button>
@@ -25,12 +26,13 @@
   </div>
 </template>
 
-<script setup>
+<script setup name="Role">
 import { ref } from 'vue'
 import { Collapse, Popover } from 'cyanery-menu'
-console.log(Collapse)
 
 const show = ref(true)
+
+const value = ref('')
 
 const change = () => (show.value = !show.value)
 

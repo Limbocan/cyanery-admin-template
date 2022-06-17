@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import VueSetupExtend from 'vite-plugin-vue-setup-extend'
 import eslintPlugin from 'vite-plugin-eslint'
 import ElementPlus from 'unplugin-element-plus/vite'
 
@@ -19,6 +20,7 @@ export default defineConfig({
   },
   plugins: [
     vue(),
+    VueSetupExtend(),
     eslintPlugin({
       include: ['src/**/*.js', 'src/**/*.vue', 'src/**/*.ts', 'src/*.js', 'src/*.vue', 'src/*.ts']
     }),

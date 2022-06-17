@@ -38,16 +38,20 @@ const route = useRoute()
 const router = useRouter()
 const menuState = useMenuState()
 
+// 当前菜单
 const active = computed(() => {
   return route.name
 })
+// 菜单展开状态
 const open = computed(() => menuState.getCollapse())
 
+// 菜单数据
 const menuData = computed(() => {
   const _routes = menuState.getRoleRoute() || []
   return formatMenu(_routes)
 })
 
+// 格式化菜单
 const formatMenu = (menus = []) => {
   const result = []
   menus.filter(menu => !menu.hidden).forEach(menu => {
@@ -66,6 +70,7 @@ const formatMenu = (menus = []) => {
   return result
 }
 
+// 菜单点击跳转
 const menuClick = (menu) => {
   if (!menu.children) router.push({ name: menu.routeName })
 }

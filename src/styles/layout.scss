@@ -190,7 +190,7 @@
           }
           .tag-li-icon {
             &:hover {
-              color: var(--tag-active-color);
+              fill: var(--tag-active-color);
             }
           }
         }
@@ -208,9 +208,11 @@
         }
 
         .tag-li-icon {
-          color: var(--tag-item-color);
+          width: 10px;
+          height: 10px;
+          fill: var(--tag-item-color);
           &:hover {
-            color: var(--header-color);
+            fill: var(--header-color);
           }
         }
       }

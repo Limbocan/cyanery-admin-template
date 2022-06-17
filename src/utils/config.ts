@@ -76,9 +76,9 @@ export const systermConfig: systermType = reactive({
   layout: _localSetting.layout || 'layout-left',
   theme: _localSetting.theme || 'light',
   layoutConfig: {
-    headerHeight: 46,
-    menuWidth: 220,
-    menuCloseWidth: 42,
+    headerHeight: _localSetting.headerHeight || 46,
+    menuWidth: _localSetting.menuWidth || 220,
+    menuCloseWidth: _localSetting.menuCloseWidth || 42,
   },
   tagPosition: 'header',
   menuTheme: _localSetting.menuTheme || 'dark',

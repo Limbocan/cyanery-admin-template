@@ -13,10 +13,12 @@
         >
           {{ item.title }}
         </router-link>
-        <span
+        <svg
           class="tag-li-icon"
           @click="closeTags(item, index)"
-        >×</span>
+        >
+          <use xlink:href="#cyanery-CloseDefault" />
+        </svg>
       </li>
     </ul>
   </div>

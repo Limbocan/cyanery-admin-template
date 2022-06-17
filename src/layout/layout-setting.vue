@@ -52,15 +52,21 @@
               height="80%"
               class="theme--check-icon"
             >
-              <use xlink:href="#cyanery-CheckMark" />
+              <use :xlink:href="theme.name === 'custom' ? '#cyanery-CheckMark' : '#cyanery-huihua'" />
             </svg>
           </div>
         </label>
       </div>
-      <h5 class="setting-title">
+      <h5
+        v-show="systermConfig.theme === 'custom'"
+        class="setting-title"
+      >
         自定义主题配置
       </h5>
-      <div class="setting-custom-group">
+      <div
+        v-show="systermConfig.theme === 'custom'"
+        class="setting-custom-group"
+      >
         <div class="custom-box">
           <span class="custom-label">顶栏背景色</span>
           <el-color-picker
@@ -140,15 +146,24 @@
         </div>
         <div class="custom-box">
           <span class="custom-label">顶栏高度</span>
-          <el-input-number v-model="systermConfig.layoutConfig.headerHeight" />
+          <el-input-number
+            v-model="systermConfig.layoutConfig.headerHeight"
+            @change="changeSetting('headerHeight', systermConfig.layoutConfig.headerHeight)"
+          />
         </div>
         <div class="custom-box">
           <span class="custom-label">菜单展开宽度</span>
-          <el-input-number v-model="systermConfig.layoutConfig.menuWidth" />
+          <el-input-number
+            v-model="systermConfig.layoutConfig.menuWidth"
+            @change="changeSetting('menuWidth', systermConfig.layoutConfig.menuWidth)"
+          />
         </div>
         <div class="custom-box">
           <span class="custom-label">菜单收起宽度</span>
-          <el-input-number v-model="systermConfig.layoutConfig.menuCloseWidth" />
+          <el-input-number
+            v-model="systermConfig.layoutConfig.menuCloseWidth"
+            @change="changeSetting('menuCloseWidth', systermConfig.layoutConfig.menuCloseWidth)"
+          />
         </div>
       </div>
     </div>

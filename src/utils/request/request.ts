@@ -30,7 +30,7 @@ class CopoteRequest implements RequestConfig {
      * @params AxiosRequestConfigs
      */
     this.request.interceptors.request.use(
-      (config) => {
+      (config: any) => {
         // 判断token
         if (sessionStorage.getItem('token')) {
           config.headers.token = 'bearer ' + sessionStorage.getItem('token')
@@ -70,8 +70,7 @@ class CopoteRequest implements RequestConfig {
             canceled: false,
           }
           const requestItem = this.getPenddingItem(cancelParams)
-          if (requestItem.length > 1)
-            this.cancelPenddingItem(requestItem[requestItem.length - 1])
+          if (requestItem.length > 1) { this.cancelPenddingItem(requestItem[requestItem.length - 1]) }
         }
         return config
       },
@@ -147,13 +146,14 @@ class CopoteRequest implements RequestConfig {
       }
     )
   }
+
   /**
    * 实例化aixos并返回实例
    * @param config
    */
   create(config: AxiosRequestConfigs): RequestInstance {
-    this.baseURL = URL_OPTION[config.baseURL || 'DEVOPS']
-    this.service = SERVICE_OPTION[config.service || 'DEVOPS']
+    this.baseURL = URL_OPTION[config.baseURL || 'BASE']
+    this.service = SERVICE_OPTION[config.service || 'BASE']
     const Instance = axios.create({
       baseURL: this.baseURL + this.service,
       timeout: config.timeout || 10000,
@@ -179,6 +179,7 @@ class CopoteRequest implements RequestConfig {
     })
     return item
   }
+
   /**
    * 取消请求
    * @param request
@@ -190,6 +191,7 @@ class CopoteRequest implements RequestConfig {
       // this.removePenddingItem(request) // 在响应错误执行移除
     }
   }
+
   /**
    * 从未响应列表移除已经响应的请求
    * @param request
@@ -206,6 +208,7 @@ class CopoteRequest implements RequestConfig {
     })
     if (index > -1) this.penddingList.splice(index, 1)
   }
+
   /**
    * 取消当前实例下所有未响应请求
    * @param showMsg 是否显示提示信息
@@ -215,14 +218,14 @@ class CopoteRequest implements RequestConfig {
       if (item.cancel) item.cancel({ request: item, code: '409', msg: showMsg })
     })
   }
+
   /**
    * 取消单个请求
    * @param params CancelParams
    */
   cancelRequest(params: CancelParams): void {
     const requestItem = this.getPenddingItem(params)
-    if (requestItem.length > 1)
-      this.cancelPenddingItem(requestItem[requestItem.length - 1])
+    if (requestItem.length > 1) { this.cancelPenddingItem(requestItem[requestItem.length - 1]) }
   }
 }
 

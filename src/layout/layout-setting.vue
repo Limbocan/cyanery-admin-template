@@ -52,7 +52,7 @@
               height="80%"
               class="theme--check-icon"
             >
-              <use :xlink:href="theme.name === 'custom' ? '#cyanery-CheckMark' : '#cyanery-huihua'" />
+              <use :xlink:href="theme.name === 'custom' ? '#cyanery-huihua' : '#cyanery-CheckMark'" />
             </svg>
           </div>
         </label>
@@ -191,7 +191,7 @@ const state = reactive({
   show: false
 })
 
-const layoutList = allLayout.map(l => ({ name: l, class: l + '-preview' }))
+const layoutList = allLayout.map(layout => ({ name: layout, class: layout + '-preview' }))
 const themeList = Object.keys(allTheme).map(t => ({ ...allTheme[t], name: t }))
 
 const openDrawer = () => { state.show = true }

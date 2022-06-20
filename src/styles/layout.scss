@@ -21,6 +21,7 @@
     background-color: var(--header-bg-color);
     box-shadow: 0 0 6px -4px #00000038;
     z-index: var(--header-z);
+    // overflow: hidden;
     
     // 展开/收起菜单 按钮
     .collapse-btn {
@@ -30,6 +31,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      flex-shrink: 0;
       cursor: pointer;
 
       .svg-icon {
@@ -42,6 +44,7 @@
     .header-center {
       flex: 1;
       height: 100%;
+      overflow: hidden;
       .layout-tag {
         height: var(--header-height);
         line-height: var(--header-height);
@@ -68,6 +71,7 @@
     // 右边工具栏
     .header-right {
       height: 100%;
+      flex-shrink: 0;
       display: flex;
       flex-direction: row;
       justify-content: space-around;
@@ -173,6 +177,7 @@
     height: var(--tag-height);
     line-height: var(--tag-height);
     min-height: var(--tag-height);
+    padding: 0 20px;
     overflow: hidden;
     background: var(--header-bg-color);
     box-shadow: 0 0px 6px -2px #0000000d;
@@ -180,19 +185,22 @@
     .tag-list {
       width: 100%;
       height: 100%;
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: scroll;
 
       .tag-li {
         --gap-size: 4px;
-        float: left;
+        flex-shrink: 0;
         border-radius: 3px;
         font-size: 12px;
         overflow: hidden;
-        cursor: pointer;
         height: 100%;
         padding: 0 4px 0 8px;
         vertical-align: middle;
         list-style: none;
         transition: background 0.2s ease-in;
+        cursor: pointer;
 
         &:not(.active):hover {
           background: #f8f8f8;
@@ -228,6 +236,35 @@
             fill: var(--main-color);
           }
         }
+      }
+
+      // 滚动条样式
+      &::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+      }
+    
+      &::-webkit-scrollbar-thumb {
+        border-radius: 0;
+      }
+    
+      & {
+        scrollbar-width: none;
+      }
+    }
+
+    .tag-handle {
+      position: absolute;
+      top: 0;
+      width: 20px;
+      height: 100%;
+      cursor: pointer;
+      &-left {
+        left: 0;
+        transform: rotate(180deg);
+      }
+      &-right {
+        right: 0;
       }
     }
   }

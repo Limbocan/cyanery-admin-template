@@ -20,7 +20,9 @@
       </svg>
     </div>
 
-    <layout-tag v-if="systermConfig.tagPosition === 'header'" />
+    <div class="header-center">
+      <layout-tag v-if="systermConfig.tagPosition === 'header'" />
+    </div>
 
     <div class="header-right">
       <div class="header-item">

@@ -39,11 +39,34 @@
       }
     }
 
+    .header-center {
+      flex: 1;
+      height: 100%;
+      .layout-tag {
+        height: var(--header-height);
+        line-height: var(--header-height);
+
+        .tag-li {
+          margin: 0;
+          background-color: var(--header-bg-color);
+
+          &.active {
+            background-color: var(--content-bg-color);
+
+            .tag-li-title {
+              color: var(--main-color);
+            }
+          }
+
+          .tag-li-title {
+            color: var(--header-color);
+          }
+        }
+      }
+    }
+
     // 右边工具栏
     .header-right {
-      position: absolute;
-      right: 0;
-      top: 0;
       height: 100%;
       display: flex;
       flex-direction: row;
@@ -145,17 +168,13 @@
 
   .layout-tag {
     --tag-height: 30px;
-    --tag-bg-color: #00000000;
-    --tag-item-color: #485b76;
-    --tag-item-bg-color: #fff;
-    --tag-active-color: #fff;
 
     position: relative;
     height: var(--tag-height);
+    line-height: var(--tag-height);
     min-height: var(--tag-height);
     overflow: hidden;
-    background: var(--tag-bg-color);
-    padding-right: 120px;
+    background: var(--header-bg-color);
     box-shadow: 0 0px 6px -2px #0000000d;
 
     .tag-list {
@@ -169,29 +188,23 @@
         font-size: 12px;
         overflow: hidden;
         cursor: pointer;
-        height: calc(var(--tag-height) - calc(var(--gap-size) * 2));
-        line-height: calc(var(--tag-height) - calc(var(--gap-size) * 2));
-        border: 1px solid #e9eaec;
+        height: 100%;
         padding: 0 4px 0 8px;
         vertical-align: middle;
         list-style: none;
-        color: var(--tag-item-bg-color);
         transition: background 0.2s ease-in;
-        margin: var(--gap-size);
 
         &:not(.active):hover {
           background: #f8f8f8;
+          .tag-li-title {
+            color: var(--main-color);
+          }
         }
 
         &.active {
-          background-color: var(--header-color);
+          background-color: var(--content-bg-color);
           .tag-li-title {
-            color: var(--tag-active-color);
-          }
-          .tag-li-icon {
-            &:hover {
-              fill: var(--tag-active-color);
-            }
+            color: var(--main-color);
           }
         }
 
@@ -203,16 +216,16 @@
           white-space: nowrap;
           text-overflow: ellipsis;
           margin-right: 5px;
-          color: var(--tag-item-color);
+          color: var(--header-color);
           text-decoration: none;
         }
 
         .tag-li-icon {
           width: 10px;
           height: 10px;
-          fill: var(--tag-item-color);
+          fill: var(--header-color);
           &:hover {
-            fill: var(--header-color);
+            fill: var(--main-color);
           }
         }
       }

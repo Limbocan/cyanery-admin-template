@@ -14,8 +14,7 @@ import loginApi from '@/api/login'
 const router = useRouter()
 
 const loginClick = () => {
-  loginApi.login().then(res => {
-    console.log(res)
+  loginApi.login({ username: 'admin', password: 'admin' }).then(res => {
     router.push({ path: '/home/dashboard' })
   })
   // router.push({ name: 'Home' })

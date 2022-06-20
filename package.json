@@ -8,7 +8,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "ant-design-vue": "^3.2.7",
     "axios": "^0.27.2",
     "cyanery-menu": "^1.0.8",
     "element-plus": "^2.2.5",

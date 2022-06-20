@@ -80,7 +80,7 @@ export const systermConfig: systermType = reactive({
     menuWidth: _localSetting.menuWidth || 220,
     menuCloseWidth: _localSetting.menuCloseWidth || 42,
   },
-  tagPosition: 'header',
+  tagPosition: _localSetting.tagPosition || 'header',
   menuTheme: _localSetting.menuTheme || 'dark',
 })
 // 可选布局

@@ -226,6 +226,9 @@
           margin-right: 5px;
           color: var(--header-color);
           text-decoration: none;
+          &:focus-visible {
+            outline: none;
+          }
         }
 
         .tag-li-icon {

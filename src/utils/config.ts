@@ -74,7 +74,7 @@ const formatStyleProp = (prop: string) => `--${prop.replace(/[A-Z]/g, '-$&').toL
 // 系统设置
 export const systermConfig: systermType = reactive({
   layout: _localSetting.layout || 'layout-left',
-  theme: _localSetting.theme || 'light',
+  theme: _localSetting.theme || 'primary',
   layoutConfig: {
     headerHeight: _localSetting.headerHeight || 46,
     menuWidth: _localSetting.menuWidth || 220,

@@ -9,7 +9,7 @@ type tagType = {
 
 const _tagState = reactive({
   tagList: [
-    ...Array(30).fill(null).map((_i, index) => ({ title: `测试${index}`, path: '/home/dashboard' }))
+    ...Array(30).fill(null).map((_i, index) => ({ title: `测试${index}`, path: '/home/dashboard', name: `测试${index}` }))
   ] as tagType[],
   keepAlives: [] as string[]
 })

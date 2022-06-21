@@ -3,6 +3,7 @@
     <svg
       v-show="scrollHandle"
       class="tag-handle tag-handle-left"
+      @click="scrollClick('Left')"
     >
       <use xlink:href="#cyanery-youjiantou" />
     </svg>
@@ -33,6 +34,7 @@
     <svg
       v-show="scrollHandle"
       class="tag-handle tag-handle-right"
+      @click="scrollClick('Right')"
     >
       <use xlink:href="#cyanery-youjiantou" />
     </svg>
@@ -67,21 +69,7 @@ watch(
       keepAlive: route.meta.keepAlive
     }
     if (!tagState.hasTag(_tag)) tagState.addTag(_tag)
-  },
-  { immediate: true }
-)
-
-// 监听标签页数量
-watch(
-  () => tagList.value.length,
-  () => {
-    nextTick(() => {
-      const _domWidth = tagListRef.value?.clientWidth
-      const _scrollWidth = tagListRef.value?.scrollWidth
-      scrollHandle.value = _domWidth !== _scrollWidth
-      const _activeTag = tagListRef.value.querySelector('.active')
-      _activeTag.scrollIntoView({ smooth: true })
-    })
+    nextTick(() => scrollActive())
   },
   { immediate: true }
 )
@@ -96,5 +84,21 @@ const closeTags = (tag, index) => {
   } else {
     router.push('/')
   }
+}
+
+// 手动切换滚动
+const scrollClick = (type) => {
+  const _listWidth = tagListRef.value?.clientWidth
+  if (type === 'Left') tagListRef.value.scrollLeft -= _listWidth
+  else tagListRef.value.scrollLeft += _listWidth
+}
+
+// 滚动到当前标签
+const scrollActive = () => {
+  const _domWidth = tagListRef.value?.clientWidth
+  const _scrollWidth = tagListRef.value?.scrollWidth
+  scrollHandle.value = _domWidth !== _scrollWidth
+  const _activeTag = tagListRef.value.querySelector('.active')
+  _activeTag.scrollIntoView({ smooth: true })
 }
 </script>

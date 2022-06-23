@@ -99,6 +99,6 @@ const scrollActive = () => {
   const _scrollWidth = tagListRef.value?.scrollWidth
   scrollHandle.value = _domWidth !== _scrollWidth
   const _activeTag = tagListRef.value.querySelector('.active')
-  _activeTag.scrollIntoView({ smooth: true })
+  nextTick(() => _activeTag.scrollIntoView({ smooth: true }))
 }
 </script>

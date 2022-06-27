@@ -9,15 +9,15 @@
 
 <script setup>
 import { useRouter } from 'vue-router'
-import loginApi from '@/api/login'
+import { useUserState } from '@/state/user-state'
 
+const userState = useUserState()
 const router = useRouter()
 
 const loginClick = () => {
-  loginApi.login({ username: 'admin', password: 'admin' }).then(res => {
+  userState.login({ username: 'admin', password: 'admin' }).then(res => {
     router.push({ path: '/home/dashboard' })
   })
-  // router.push({ name: 'Home' })
 }
 
 </script>

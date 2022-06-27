@@ -16,31 +16,6 @@ export const PAGE_NOT_FOUND_ROUTE: AppRouteRecordRaw = {
   component: () => import('@/views/404/index.vue'),
 }
 
-// layout-404路由
-export const LAYOUT_PAGE_NOT_FOUND_ROUTE: AppRouteRecordRaw = {
-  path: '/:pathMatch(.*)*',
-  name: 'NotFound',
-  hidden: true,
-  meta: {
-    title: '404',
-    roles: ['*'],
-  },
-  redirect: { name: 'NotFoundChild' },
-  component: LAYOUT,
-  children: [
-    {
-      path: '/:pathMatch(.*)*',
-      name: 'NotFoundChild',
-      hidden: true,
-      meta: {
-        title: '404',
-        roles: ['*'],
-      },
-      component: () => import('@/views/404/index.vue'),
-    },
-  ],
-}
-
 // 主页路由
 export const RootRoute: AppRouteRecordRaw = {
   path: '/',

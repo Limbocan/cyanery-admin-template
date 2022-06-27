@@ -8,9 +8,7 @@ type tagType = {
 }
 
 const _tagState = reactive({
-  tagList: [
-    ...Array(30).fill(null).map((_i, index) => ({ title: `测试${index}`, path: '/home/dashboard', name: `测试${index}` }))
-  ] as tagType[],
+  tagList: [] as tagType[],
   keepAlives: [] as string[]
 })
 
@@ -43,6 +41,11 @@ export const useTagState = () => {
     const _index = _tagState.tagList.findIndex(_tag => _tag.path === tag.path && _tag.name === tag.name)
     _tagState.tagList.splice(_index, 1)
     state.removeKeepAlive(tag.name)
+  }
+
+  // 移除多个标签
+  state.removeTags = (tags: []) => {
+    tags.forEach(tag => state.removeTag(tag))
   }
 
   // 判断标签是否存在

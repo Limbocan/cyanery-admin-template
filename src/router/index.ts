@@ -1,7 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
 import type { AppRouteModule } from './types'
-import { LoginRoute, RootRoute, PAGE_NOT_FOUND_ROUTE, LAYOUT_PAGE_NOT_FOUND_ROUTE } from './constant'
+import { LoginRoute, RootRoute, PAGE_NOT_FOUND_ROUTE } from './constant'
 import { addWhiteList, WHITE_NAME_LIST, createRouterGuards } from './guard'
 
 const modules = import.meta.globEager('./modules/**/*.ts')
@@ -15,7 +15,7 @@ Object.keys(modules).forEach((key) => {
 })
 
 // 异步路由
-export const asyncRoutes = [...routeModuleList, LAYOUT_PAGE_NOT_FOUND_ROUTE]
+export const asyncRoutes = [...routeModuleList]
 
 // 基础路由
 export const basicRoutes = [LoginRoute, RootRoute, PAGE_NOT_FOUND_ROUTE]

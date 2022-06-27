@@ -177,7 +177,6 @@
     height: var(--tag-height);
     line-height: var(--tag-height);
     min-height: var(--tag-height);
-    padding: 0 20px;
     overflow: hidden;
     background: var(--header-bg-color);
     box-shadow: 0 0px 6px -2px #0000000d;
@@ -271,6 +270,10 @@
         right: 0;
       }
     }
+  }
+
+  .show-handle + .layout-tag {
+    padding: 0 20px;
   }
 
   .layout-content {

@@ -2,7 +2,8 @@ import { reactive } from 'vue'
 import { getLocal, setLocal } from '../utils/storage'
 import loginApi from '../api/login'
 
-const storageUser = getLocal('user_state') || {}
+const getStorageUser = () => getLocal('user_state') || {}
+const storageUser = getStorageUser()
 
 const _userState = reactive({
   token: storageUser.token || '',
@@ -18,7 +19,7 @@ export const useUserState = () => {
     loginApi.login(params).then((res: any) => {
       state.setRole(res.data.role)
       state.setToken(res.data.role)
-      state.setUserInfo(res.data)
+      state.setUserInfo(res.data || {})
       resolve(res.data)
     }).catch((err: any) => reject(err))
   })
@@ -26,7 +27,7 @@ export const useUserState = () => {
   // 设置用户权限
   state.setRole = (role: string) => {
     _userState.role = role
-    setLocal('user_state', { ...storageUser, role })
+    setLocal('user_state', { ...getStorageUser(), role })
   }
 
   // 获取用户权限
@@ -35,7 +36,7 @@ export const useUserState = () => {
   // 存储token
   state.setToken = (token: string) => {
     _userState.token = token
-    setLocal('user_state', { ...storageUser, token })
+    setLocal('user_state', { ...getStorageUser(), token })
   }
 
   // 获取token
@@ -44,7 +45,7 @@ export const useUserState = () => {
   // 存储用户信息
   state.setUserInfo = (info: any) => {
     _userState.userInfo = { ...info }
-    setLocal('user_state', { ...storageUser, info })
+    setLocal('user_state', { ...getStorageUser(), userInfo: info })
   }
 
   // 获取用户信息

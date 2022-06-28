@@ -25,22 +25,18 @@
     </div>
 
     <div class="header-right">
+      <div class="header-item width-item">
+        <svg class="header-icon circle-icon">
+          <use xlink:href="#cyanery-wode" />
+        </svg>
+        <span class="username">{{ userState.getUserInfo().username }}</span>
+      </div>
       <div class="header-item">
         <svg
           class="header-icon circle-icon"
           @click="openSetting"
         >
           <use xlink:href="#cyanery-shezhi1" />
-        </svg>
-      </div>
-      <div class="header-item">
-        <svg class="header-icon circle-icon">
-          <use xlink:href="#cyanery-wode" />
-        </svg>
-      </div>
-      <div class="header-item">
-        <svg class="header-icon circle-icon">
-          <use xlink:href="#cyanery-tuichu" />
         </svg>
       </div>
     </div>
@@ -50,6 +46,7 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
+import { useUserState } from '@/state/user-state'
 import { useMenuState } from '@/state/menu-state'
 import { systermConfig } from '@/utils/config'
 import layoutTag from '../layout-tag/index.vue'
@@ -57,9 +54,9 @@ import logo from './logo.vue'
 import layoutSetting from '../layout-setting.vue'
 
 const layoutSettingRef = ref(null)
+const userState = useUserState()
 const menuState = useMenuState()
 const collapse = computed(() => menuState.getCollapse())
-
 onMounted(() => {
   if (document.body.clientWidth < 1500) {
     collapseChage()

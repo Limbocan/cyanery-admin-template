@@ -50,15 +50,25 @@ export const themeConfig: { [key: string]: themeType } = reactive({
     menuOpenBgColor: '#3a3f51',
     contentBgColor: '#F5F7FF'
   },
+  dark: {
+    layoutDuration: '.3s',
+    mainColor: '#DEE0C8',
+    headerColor: '#ACB6D9',
+    headerBgColor: '#1F294D',
+    menuBgColor: '#1F294D',
+    menuTextColor: '#ACB6D9',
+    menuOpenBgColor: '#474665',
+    contentBgColor: '#4d5571'
+  },
   custom: {
     layoutDuration: '.3s',
-    mainColor: '#1feef7',
-    headerColor: '',
-    headerBgColor: '',
-    menuBgColor: '',
-    menuTextColor: '',
-    menuOpenBgColor: '',
-    contentBgColor: ''
+    mainColor: '#FCFAF4',
+    headerColor: '#FCF5E3',
+    headerBgColor: '#3c6283',
+    menuBgColor: '#2D4C68',
+    menuTextColor: '#BDD0DE',
+    menuOpenBgColor: '#738EA2',
+    contentBgColor: '#becce2'
   }
 })
 // 获取主题样式
@@ -78,7 +88,7 @@ export const systermConfig: systermType = reactive({
   layoutConfig: {
     headerHeight: _localSetting.headerHeight || 40,
     menuWidth: _localSetting.menuWidth || 220,
-    menuCloseWidth: _localSetting.menuCloseWidth || 42,
+    menuCloseWidth: _localSetting.menuCloseWidth || 40,
   },
   tagPosition: _localSetting.tagPosition || 'header',
   menuTheme: _localSetting.menuTheme || 'dark',

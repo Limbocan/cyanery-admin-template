@@ -64,7 +64,7 @@ export const themeConfig: { [key: string]: themeType } = reactive({
     layoutDuration: '.3s',
     mainColor: '#FCFAF4',
     headerColor: '#FCF5E3',
-    headerBgColor: '#3c6283',
+    headerBgColor: '#1a3e5e',
     menuBgColor: '#2D4C68',
     menuTextColor: '#BDD0DE',
     menuOpenBgColor: '#738EA2',

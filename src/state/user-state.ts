@@ -1,5 +1,5 @@
 import { reactive } from 'vue'
-import { getLocal, setLocal } from '../utils/storage'
+import { getLocal, removeLocal, setLocal } from '../utils/storage'
 import loginApi from '../api/login'
 
 const getStorageUser = () => getLocal('user_state') || {}
@@ -50,6 +50,14 @@ export const useUserState = () => {
 
   // 获取用户信息
   state.getUserInfo = () => _userState.userInfo
+
+  // 退出登录
+  state.clearUser = () => {
+    _userState.token = ''
+    _userState.userInfo = {}
+    _userState.role = ''
+    removeLocal('user_state')
+  }
 
   return state
 }

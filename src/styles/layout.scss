@@ -292,6 +292,24 @@
     &.collapse-content {
       left: var(--menu-close-width);
     }
+    
+    .layout-content-corner {
+      position: absolute;
+      top: 0;
+      &.corner-left {
+        left: 0;
+        width: 16px;
+        height: 16px;
+        background-color: var(--header-bg-color);
+        background: radial-gradient(circle at bottom right, transparent 16px, var(--header-bg-color) 17px);
+      }
+      &.corner-right {
+        right: 0;
+        width: 16px;
+        height: 16px;
+        background: radial-gradient(circle at bottom left, transparent 16px, var(--header-bg-color) 17px);
+      }
+    }
 
     .content {
       flex: 1;

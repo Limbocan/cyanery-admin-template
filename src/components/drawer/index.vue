@@ -17,7 +17,7 @@
         />
         <div
           :style="drawerStyle"
-          :class="['drawer-content', ['top', 'bottom'].includes(props.position) ? 'drawer-column' : 'drawer-row']"
+          :class="['drawer-content', ['top', 'bottom'].includes(props.position) ? 'drawer-column' : 'drawer-row', props.class]"
         >
           <slot name="header">
             <div class="drawer-title">
@@ -49,6 +49,7 @@ const props = defineProps({
   position: { type: String, default: 'right' }, // 弹出位置
   maskClose: { type: Boolean, default: true }, // 是否点击遮罩关闭
   toBody: { type: Boolean, default: true }, // 是否挂载到body元素下
+  class: { type: String, default: '' },
   toEle: { type: String, default: 'body' },
   size: { type: String, default: '30%' },
   title: { type: String, default: '' },

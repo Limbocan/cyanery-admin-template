@@ -316,6 +316,17 @@
       padding: 8px 10px;
       background: var(--content-bg-color);
       overflow: auto;
+
+      .page-box {
+        background-color: var(--header-bg-color);
+        color: var(--header-color);
+
+        &.full-page-box {
+          height: 100%;
+          padding: 20px;
+          border-radius: 20px;
+        }
+      }
     }
   }
 }
@@ -355,6 +366,10 @@
   
   .layout-menu {
     top: var(--header-height);
+  }
+
+  .layout-content-corner {
+    display: none;
   }
 }
 

@@ -2,6 +2,7 @@
   <cy-drawer
     v-model="state.show"
     title="系统设置"
+    background="#ebebeb"
     size="320px"
   >
     <div class="setting-box">
@@ -45,7 +46,7 @@
           >
           <div
             :class="['theme-box', systermConfig.theme === theme.name ? 'active-box' : '']"
-            :style="{ '--theme-color': theme.mainColor }"
+            :style="{ '--theme-color': theme.menuBgColor, '--select-color': theme.menuTextColor }"
           >
             <svg
               width="80%"
@@ -307,7 +308,7 @@ defineExpose({
 
       .theme--check-icon {
         visibility: hidden;
-        fill: #fff;
+        fill: var(--select-color);
       }
 
       &.active-box .theme--check-icon {

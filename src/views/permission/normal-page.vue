@@ -1,17 +1,9 @@
 <template>
-  <div>
-    normal
-    <input v-model="value">
+  <div class="page-box full-page-box">
+    所有用户可见
   </div>
 </template>
 
 <script setup name="Normal">
-import { ref } from 'vue'
-
-const value = ref('')
 
 </script>
-
-<style lang="scss" scoped>
-
-</style>

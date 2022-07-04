@@ -25,6 +25,7 @@
             {{ item.title }}
           </router-link>
           <svg
+            v-if="pageConfig.homePath !== item.path"
             class="tag-li-icon"
             @click="closeTags(item, index)"
           >
@@ -58,6 +59,7 @@
 <script setup>
 import { computed, watch, ref, nextTick } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import { pageConfig } from '@/utils/config'
 import useTagState from '@/state/tag-state'
 
 const route = useRoute()
@@ -81,7 +83,7 @@ watch(
       name: route.name,
       keepAlive: route.meta.keepAlive
     }
-    if (!tagState.hasTag(_tag)) tagState.addTag(_tag)
+    if (!tagState.hasTag(_tag) && route.meta.tag !== false) tagState.addTag(_tag)
     nextTick(() => scrollActive())
   },
   { immediate: true }

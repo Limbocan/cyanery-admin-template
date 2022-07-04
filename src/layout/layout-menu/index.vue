@@ -55,13 +55,25 @@ const menuData = computed(() => {
 const formatMenu = (menus = []) => {
   const result = []
   menus.filter(menu => !menu.hidden).forEach(menu => {
-    const _hasChild = menu.children && menu.children.length
-    const _menu = {
+    let _hasChild = menu.children && menu.children.length
+    let _menu = {
       ...menu,
       name: menu.meta.title,
       key: menu.name,
       routeName: menu.name,
       children: _hasChild ? [] : null
+    }
+    if (menu.root === true) {
+      _hasChild = false
+      _menu = {
+        ..._menu,
+        ...menu.children[0],
+        order: menu.order,
+        name: menu.meta.title,
+        routeName: menu.children[0].name,
+        key: menu.children[0].name,
+        children: null
+      }
     }
     if (_hasChild) _menu.children.push(...formatMenu(menu.children))
     result.push(_menu)
@@ -72,7 +84,7 @@ const formatMenu = (menus = []) => {
 
 // 菜单点击跳转
 const menuClick = (menu) => {
-  if (!menu.children) router.push({ name: menu.routeName })
+  if (!menu.children || (menu.children && menu.children.length < 1)) router.push({ name: menu.routeName })
 }
 
 </script>

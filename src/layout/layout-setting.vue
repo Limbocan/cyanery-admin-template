@@ -73,6 +73,7 @@
           <el-color-picker
             v-model="allTheme.custom.headerBgColor"
             show-alpha
+            @change="customChange('headerBgColor', $event)"
           />
         </div>
         <div class="custom-box">
@@ -80,6 +81,7 @@
           <el-color-picker
             v-model="allTheme.custom.headerColor"
             show-alpha
+            @change="customChange('headerColor', $event)"
           />
         </div>
         <div class="custom-box">
@@ -87,6 +89,7 @@
           <el-color-picker
             v-model="allTheme.custom.menuBgColor"
             show-alpha
+            @change="customChange('menuBgColor', $event)"
           />
         </div>
         <div class="custom-box">
@@ -94,6 +97,7 @@
           <el-color-picker
             v-model="allTheme.custom.menuTextColor"
             show-alpha
+            @change="customChange('menuTextColor', $event)"
           />
         </div>
         <div class="custom-box">
@@ -101,6 +105,7 @@
           <el-color-picker
             v-model="allTheme.custom.menuOpenBgColor"
             show-alpha
+            @change="customChange('menuOpenBgColor', $event)"
           />
         </div>
         <div class="custom-box">
@@ -108,6 +113,7 @@
           <el-color-picker
             v-model="allTheme.custom.contentBgColor"
             show-alpha
+            @change="customChange('contentBgColor', $event)"
           />
         </div>
       </div>
@@ -202,6 +208,12 @@ const changeSetting = (type, value) => {
   const _setting = getLocal('layout_setting')
   Object.assign(_setting, { [type]: value })
   setLocal('layout_setting', _setting)
+}
+// 存储自定义设置
+const customChange = (type, value) => {
+  const _custom = getLocal('layout_custom')
+  Object.assign(_custom, { [type]: value })
+  setLocal('layout_custom', _custom)
 }
 
 defineExpose({

@@ -7,6 +7,7 @@ const route: AppRouteRecordRaw = {
   roles: ['*'],
   order: 1,
   icon: 'shouye',
+  root: true,
   meta: {
     title: '主页',
   },

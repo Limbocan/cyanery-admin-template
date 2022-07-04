@@ -2,6 +2,12 @@ import { reactive, computed } from 'vue'
 import { getLocal } from './storage'
 
 const _localSetting = getLocal('layout_setting')
+const _customSetting = getLocal('layout_custom')
+
+// 主页
+export const pageConfig = {
+  homePath: '/home/dashboard',
+}
 
 // 主题配置
 type themeType = {
@@ -62,13 +68,13 @@ export const themeConfig: { [key: string]: themeType } = reactive({
   },
   custom: {
     layoutDuration: '.3s',
-    mainColor: '#FCFAF4',
-    headerColor: '#FCF5E3',
-    headerBgColor: '#1a3e5e',
-    menuBgColor: '#2D4C68',
-    menuTextColor: '#BDD0DE',
-    menuOpenBgColor: '#738EA2',
-    contentBgColor: '#becce2'
+    mainColor: _customSetting.mainColor || '#FCFAF4',
+    headerColor: _customSetting.headerColor || '#FCF5E3',
+    headerBgColor: _customSetting.headerBgColor || '#1a3e5e',
+    menuBgColor: _customSetting.menuBgColor || '#2D4C68',
+    menuTextColor: _customSetting.menuTextColor || '#BDD0DE',
+    menuOpenBgColor: _customSetting.menuOpenBgColor || '#738EA2',
+    contentBgColor: _customSetting.contentBgColor || '#becce2'
   }
 })
 // 获取主题样式

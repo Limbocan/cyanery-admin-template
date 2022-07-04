@@ -12,6 +12,7 @@ export const PAGE_NOT_FOUND_ROUTE: AppRouteRecordRaw = {
   hidden: true,
   meta: {
     title: '找不到页面',
+    tag: false,
   },
   component: () => import('@/views/404/index.vue'),
 }
@@ -21,7 +22,7 @@ export const RootRoute: AppRouteRecordRaw = {
   path: '/',
   name: 'Root',
   redirect: { name: 'Login' },
-  meta: {},
+  meta: { tag: false },
 }
 
 // 登录路由
@@ -31,5 +32,6 @@ export const LoginRoute: AppRouteRecordRaw = {
   component: () => import('@/views/login/index.vue'),
   meta: {
     title: '登录',
+    tag: false,
   },
 }

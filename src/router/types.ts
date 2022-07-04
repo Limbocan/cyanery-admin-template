@@ -16,6 +16,7 @@ export interface AppRouteRecordRaw extends Omit<RouteRecordRaw, 'meta'> {
   children?: AppRouteRecordRaw[]
   hidden?: boolean
   disabled?: boolean
+  root?: boolean
   order?: number
   props?: any
   icon?: string

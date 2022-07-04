@@ -50,9 +50,7 @@ export const notice = function (option: {
     STATUS_CODE.get(String(option.code))
   const noticeParams: noticeOption = {
     type: 'error',
-    title: `${codeInfo ? codeInfo.title : option.title || '错误'}（${
-      option.code || '未知'
-    }）`,
+    title: `${codeInfo ? codeInfo.title : option.title || '错误'}（${option.code || '未知'}）`,
     message: codeInfo ? codeInfo.message : option.msg || '',
     position: 'top-right',
     duration: 2000,

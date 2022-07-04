@@ -17,13 +17,9 @@
       >
         <li
           :class="['tag-li', { active: isActive(item.path) }]"
+          @click="routerClick(item)"
         >
-          <router-link
-            :to="item.path"
-            class="tag-li-title"
-          >
-            {{ item.title }}
-          </router-link>
+          <span class="tag-li-title">{{ item.title }}</span>
           <svg
             v-if="pageConfig.homePath !== item.path"
             class="tag-li-icon"
@@ -89,6 +85,11 @@ watch(
   { immediate: true }
 )
 
+// 路由跳转
+const routerClick = (tag) => {
+  router.push({ path: tag.path })
+}
+
 // 右键菜单列表
 const rightMenuList = [
   { label: '刷新', type: 1 },
@@ -99,6 +100,7 @@ const rightMenuList = [
   { label: '关闭所有标签', type: 6 }
 ]
 
+// 右键菜单事件
 const rightMenu = (type, menu, index) => {
   switch (type) {
     case 1: {

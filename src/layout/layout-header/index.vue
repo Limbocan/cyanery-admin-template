@@ -25,6 +25,14 @@
     </div>
 
     <div class="header-right">
+      <div class="header-item">
+        <svg
+          class="header-icon"
+          @click="changeScreen"
+        >
+          <use :xlink:href="isFullScreen ? '#cyanery-tuichuquanping' : '#cyanery-quanping'" />
+        </svg>
+      </div>
       <el-popover
         width="220px"
         popper-class="user-popover"
@@ -95,6 +103,7 @@ const router = useRouter()
 const userState = useUserState()
 const menuState = useMenuState()
 const collapse = computed(() => menuState.getCollapse())
+const isFullScreen = ref(false)
 
 onMounted(() => {
   if (document.body.clientWidth < 1500) {
@@ -107,10 +116,22 @@ const collapseChage = () => {
   menuState.setCollapse(!collapse.value)
 }
 
+// 退出登录
 const logout = () => {
   userState.clearUser()
   router.push({ name: 'Login' })
 }
+
+// 全屏/退出全屏
+const changeScreen = () => {
+  if (isFullScreen.value) document.exitFullscreen()
+  else document.querySelector('body').requestFullscreen()
+}
+// 监听全屏变化
+document.addEventListener('fullscreenchange', (e) => {
+  if (document.fullscreenElement) isFullScreen.value = true
+  else isFullScreen.value = false
+})
 
 // 打开设置
 const openSetting = () => {

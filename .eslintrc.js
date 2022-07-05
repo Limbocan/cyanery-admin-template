@@ -19,6 +19,7 @@ module.exports = {
   ],
   rules: {
     'vue/multi-word-component-names': 0,
+    'no-unused-vars': 1,
     'no-debugger': 0,
     'comma-dangle': 0,
     'space-before-function-paren': 0,

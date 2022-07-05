@@ -119,6 +119,7 @@ const collapseChage = () => {
 // 退出登录
 const logout = () => {
   userState.clearUser()
+  menuState.clearState()
   router.push({ name: 'Login' })
 }
 

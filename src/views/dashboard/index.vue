@@ -1,7 +1,9 @@
 <template>
   <div class="page-box home-page">
     <div class="grid-box top-info-box">
-      <h2>{{ userState.getUserInfo().username }}，{{ helloText }}好！</h2>
+      <h2 class="hello-label">
+        {{ userState.getUserInfo().username }}，{{ helloText }}好！
+      </h2>
       <h4>{{ localTime }}</h4>
     </div>
   </div>
@@ -41,6 +43,9 @@ const localTime = computed(() => new Date().toLocaleString())
 
   .top-info-box {
     grid-column: span 3;
+    .hello-label {
+      line-height: 50px;
+    }
   }
 }
 </style>

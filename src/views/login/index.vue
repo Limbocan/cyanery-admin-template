@@ -9,7 +9,7 @@
 
 <script setup>
 import { useRouter } from 'vue-router'
-import { homePath } from '@/utils/config'
+import { pageConfig } from '@/utils/config'
 import { useUserState } from '@/state/user-state'
 
 const userState = useUserState()
@@ -17,7 +17,7 @@ const router = useRouter()
 
 const loginClick = () => {
   userState.login({ username: 'admin', password: 'admin' }).then(res => {
-    router.push({ path: homePath })
+    router.push({ path: pageConfig.homePath })
   })
 }
 

@@ -11,8 +11,8 @@ type tagType = {
 
 // localstorage名称
 const TAG_STORAGE_NAME = 'layout_tag'
-const getStorageTag = () => getLocal(TAG_STORAGE_NAME) || []
-const storageTag = getStorageTag()
+const getStorageTag = () => getLocal(TAG_STORAGE_NAME)
+const storageTag = JSON.stringify(getStorageTag()) !== '{}' ? getStorageTag() : []
 
 const _tagState = reactive({
   tagList: storageTag || [] as tagType[], // 打开的标签列表

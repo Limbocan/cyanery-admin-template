@@ -15,11 +15,11 @@
         v-for="(item, index) in tagList"
         :key="index"
       >
-        <li
-          :class="['tag-li', { active: isActive(item.path) }]"
-          @click="routerClick(item)"
-        >
-          <span class="tag-li-title">{{ item.title }}</span>
+        <li :class="['tag-li', { active: isActive(item.path) }]">
+          <span
+            class="tag-li-title"
+            @click="routerClick(item)"
+          >{{ item.title }}</span>
           <svg
             v-if="pageConfig.homePath !== item.path"
             class="tag-li-icon"

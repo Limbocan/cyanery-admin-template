@@ -28,6 +28,12 @@ export const useMenuState = () => {
   // 获取异步路由
   state.getRoleRoute = () => _menuState.roleRoutes
 
+  // 退出登录
+  state.clearState = () => {
+    _menuState.roleRoutes = []
+    _menuState.isDoneRoute = false
+  }
+
   return state
 }
 

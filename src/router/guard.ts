@@ -20,7 +20,7 @@ const menuState = useMenuState()
 // 创建路由守卫
 export const createRouterGuards = (router: any) => {
   // 路由拦截
-  router.beforeEach(async (to: any, from: any, next: any) => {
+  router.beforeEach((to: any, from: any, next: any) => {
     // 白名单路由
     if (WHITE_NAME_LIST.includes(to.path)) {
       next()

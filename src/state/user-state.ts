@@ -19,6 +19,9 @@ export const useUserState = () => {
   // 登录
   state.login = (params: any) => new Promise((resolve, reject) => {
     loginApi.login(params).then((res: any) => {
+      if (res.data.result !== 200) {
+        reject(res.data.message)
+      }
       state.setRole(res.data.role)
       state.setToken(res.data.role)
       state.setUserInfo(res.data || {})

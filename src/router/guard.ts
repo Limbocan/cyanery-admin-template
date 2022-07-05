@@ -5,7 +5,7 @@ import { useUserState } from '../state/user-state'
 import { useMenuState } from '../state/menu-state'
 
 // 白名单应该包含基本静态路由
-export const WHITE_NAME_LIST: string[] = []
+export const WHITE_NAME_LIST: string[] = ['/404']
 // 添加白名单
 export const addWhiteList = (routes: any[]) => {
   routes.forEach((route) => {

@@ -59,7 +59,7 @@ html {
     }
   }
 
-  & {
+  &, .layout-content, .layout-body, .content {
     scrollbar-width: thin;
     scrollbar-color: #c1c1c1d4 rgba(238, 238, 238, 0.908);
   }

@@ -1,6 +1,5 @@
 <template>
   <router-view v-slot="{ Component }">
-    <!--  -->
     <transition
       :name="props.animation"
       mode="out-in"

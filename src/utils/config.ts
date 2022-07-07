@@ -64,7 +64,7 @@ export const themeConfig: { [key: string]: themeType } = reactive({
     menuBgColor: '#1F294D',
     menuTextColor: '#ACB6D9',
     menuOpenBgColor: '#474665',
-    contentBgColor: '#4d5571'
+    contentBgColor: '#a9aec5'
   },
   custom: {
     layoutDuration: '.3s',
@@ -74,7 +74,7 @@ export const themeConfig: { [key: string]: themeType } = reactive({
     menuBgColor: _customSetting.menuBgColor || '#2D4C68',
     menuTextColor: _customSetting.menuTextColor || '#BDD0DE',
     menuOpenBgColor: _customSetting.menuOpenBgColor || '#738EA2',
-    contentBgColor: _customSetting.contentBgColor || '#becce2'
+    contentBgColor: _customSetting.contentBgColor || '#F5F7FF'
   }
 })
 // 获取主题样式

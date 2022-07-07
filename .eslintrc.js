@@ -18,6 +18,7 @@ module.exports = {
     '@typescript-eslint'
   ],
   rules: {
+    'vue/no-mutating-props': 0,
     'vue/multi-word-component-names': 0,
     'no-unused-vars': 1,
     'no-debugger': 0,

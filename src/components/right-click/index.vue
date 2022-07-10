@@ -6,7 +6,7 @@
   >
     <slot name="default" />
   </div>
-  <teleport to="body">
+  <teleport to=".right-click-content">
     <div
       v-show="state.visible"
       ref="rightContentRef"
@@ -19,7 +19,16 @@
 </template>
 
 <script setup>
-import { ref, reactive, watch, nextTick } from 'vue'
+import { ref, reactive, watch, nextTick, onBeforeMount } from 'vue'
+
+onBeforeMount(() => {
+  let contentDom = document.querySelector('.right-click-content')
+  if (!contentDom) {
+    contentDom = document.createElement('div')
+    contentDom.classList.add('right-click-content')
+    document.body.append(contentDom)
+  }
+})
 
 const props = defineProps({
   disabled: { type: Boolean, default: false }

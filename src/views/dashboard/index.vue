@@ -20,7 +20,7 @@
       <todo ref="todoRef" />
     </div>
     <div class="grid-box map-box box-effect-2">
-      1
+      <map-box />
     </div>
     <div class="grid-box chart-box box-effect-2">
       2
@@ -28,12 +28,13 @@
   </div>
 </template>
 
-<script setup>
+<script setup name="Dashboard">
 import { ref, computed } from 'vue'
 import { useUserState } from '@/state/user-state'
 import timeShow from './time-show.vue'
 import technology from './technology.vue'
 import todo from './todo.vue'
+import mapBox from './map-box.vue'
 
 const todoRef = ref(null)
 const userState = useUserState()
@@ -116,6 +117,10 @@ const todoInfo = computed(() => {
 
   .todo-box {
     grid-row: span 2;
+  }
+
+  .map-box, .chart-box {
+    padding: 10px;
   }
 
   ::v-deep(.card-title) {

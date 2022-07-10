@@ -66,9 +66,9 @@ const techList = [
     }
 
     .tech-text {
-      padding: 10px 12px;
+      padding: 10px 0 10px 12px;
       font-size: 14px;
-      color: #ccc;
+      color: #72777c;
     }
   }
 }

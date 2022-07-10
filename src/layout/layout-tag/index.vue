@@ -127,7 +127,7 @@ const closeTags = (tag, index) => {
   if (routeItem) {
     delItem.path === route.fullPath && router.push({ path: routeItem.path })
   } else {
-    router.push('/')
+    router.push(pageConfig.homePath)
   }
 }
 

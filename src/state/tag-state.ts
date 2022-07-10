@@ -16,7 +16,7 @@ const storageTag = JSON.stringify(getStorageTag()) !== '{}' ? getStorageTag() : 
 
 const _tagState = reactive({
   tagList: storageTag || [] as tagType[], // 打开的标签列表
-  keepAlives: [] as string[] // 缓存标签列表
+  keepAlives: (storageTag && storageTag.length) ? storageTag.map((tag: tagType) => tag.name) : [] as string[] // 缓存标签列表
 })
 
 export const useTagState = () => {
@@ -30,7 +30,7 @@ export const useTagState = () => {
 
   // 移除keepAlive缓存
   state.removeKeepAlive = (name: string) => {
-    const _index = _tagState.keepAlives.findIndex(k => k === name)
+    const _index = _tagState.keepAlives.findIndex((k: string) => k === name)
     _index > -1 && _tagState.keepAlives.splice(_index, 1)
   }
 

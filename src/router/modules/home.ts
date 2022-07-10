@@ -20,6 +20,7 @@ const route: AppRouteRecordRaw = {
       roles: ['*'],
       meta: {
         title: '主页',
+        keepAlive: true,
       },
       component: () => import('@/views/dashboard/index.vue'),
     },

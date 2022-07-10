@@ -1,6 +1,6 @@
 import { reactive } from 'vue'
 import { getLocal, removeLocal, setLocal } from '../utils/storage'
-import loginApi from '../api/login'
+import { loginApi } from '../api/login'
 
 // localstorage名称
 const USER_STORAGE_NAME = 'user_state'
@@ -18,7 +18,7 @@ export const useUserState = () => {
 
   // 登录
   state.login = (params: any) => new Promise((resolve, reject) => {
-    loginApi.login(params).then((res: any) => {
+    loginApi(params).then((res: any) => {
       if (res.data.result !== 200) {
         reject(res.data.message)
       }

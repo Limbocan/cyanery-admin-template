@@ -23,7 +23,7 @@
       <map-box />
     </div>
     <div class="grid-box chart-box box-effect-2">
-      2
+      <chart-box />
     </div>
   </div>
 </template>
@@ -35,6 +35,7 @@ import timeShow from './time-show.vue'
 import technology from './technology.vue'
 import todo from './todo.vue'
 import mapBox from './map-box.vue'
+import chartBox from './chart-box.vue'
 
 const todoRef = ref(null)
 const userState = useUserState()

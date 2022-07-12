@@ -33,46 +33,40 @@
           <use :xlink:href="isFullScreen ? '#cyanery-tuichuquanping' : '#cyanery-quanping'" />
         </svg>
       </div>
-      <el-popover
-        width="220px"
-        popper-class="user-popover"
+      <div
+        class="header-item user-item"
+        @mouseenter="openUser"
+        @mouseleave="openUser"
       >
-        <template #reference>
+        <svg class="header-icon circle-icon">
+          <use xlink:href="#cyanery-wode" />
+        </svg>
+        <span class="username">{{ userState.getUserInfo().username }}</span>
+        <cy-collapse>
           <div
-            class="header-item user-item"
-            @click="openUser"
+            v-show="userShow"
+            class="user-box"
           >
-            <svg class="header-icon circle-icon">
-              <use xlink:href="#cyanery-wode" />
-            </svg>
-            <span class="username">{{ userState.getUserInfo().username }}</span>
-          </div>
-        </template>
-        <div class="user-box">
-          <img
-            :src="userImg"
-            alt="user"
-            class="user-photo"
-          >
-          <div class="user-buttons">
-            <div class="user-button">
-              <svg class="button-icon">
-                <use xlink:href="#cyanery-dingwei" />
-              </svg>
-              个人信息
-            </div>
-            <div
-              class="user-button"
-              @click="logout"
-            >
-              <svg class="button-icon">
-                <use xlink:href="#cyanery-tuichu" />
-              </svg>
-              退出登录
+            <div class="user-buttons">
+              <div class="user-button">
+                <svg class="button-icon">
+                  <use xlink:href="#cyanery-dingwei" />
+                </svg>
+                个人信息
+              </div>
+              <div
+                class="user-button"
+                @click="logout"
+              >
+                <svg class="button-icon">
+                  <use xlink:href="#cyanery-tuichu" />
+                </svg>
+                退出登录
+              </div>
             </div>
           </div>
-        </div>
-      </el-popover>
+        </cy-collapse>
+      </div>
       <div class="header-item">
         <svg
           class="header-icon circle-icon"
@@ -89,16 +83,17 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
+import { Collapse as cyCollapse } from 'cyanery-menu'
 import { useUserState } from '@/state/user-state'
 import { useMenuState } from '@/state/menu-state'
 import { systermConfig } from '@/utils/config'
-import { ElPopover } from 'element-plus'
+import { ElMessageBox } from 'element-plus'
 import layoutTag from '../layout-tag/index.vue'
 import logo from './logo.vue'
 import layoutSetting from '../layout-setting.vue'
-import userImg from '@/assets/logo.png'
 
 const layoutSettingRef = ref(null)
+const userShow = ref(false)
 const router = useRouter()
 const userState = useUserState()
 const menuState = useMenuState()
@@ -118,9 +113,16 @@ const collapseChage = () => {
 
 // 退出登录
 const logout = () => {
-  userState.clearUser()
-  menuState.clearState()
-  router.push({ name: 'Login' })
+  ElMessageBox.confirm('', '确认退出系统？', {
+    confirmButtonText: '确认',
+    cancelButtonText: '取消',
+    type: 'warning',
+    draggable: true,
+  }).then(() => {
+    userState.clearUser()
+    menuState.clearState()
+    router.push({ name: 'Login' })
+  }).catch(e => e)
 }
 
 // 全屏/退出全屏
@@ -138,6 +140,8 @@ document.addEventListener('fullscreenchange', (e) => {
 const openSetting = () => {
   layoutSettingRef.value.openDrawer()
 }
+
+const openUser = () => (userShow.value = !userShow.value)
 
 </script>
 
@@ -163,26 +167,24 @@ const openSetting = () => {
 }
 
 .user-box {
-  text-align: center;
-  .user-photo {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    margin: 0 auto;
-  }
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: left;
+  box-shadow: 0 3px 6px -4px #0000001f, 0 6px 16px #00000014, 0 9px 28px 8px #0000000d;
   .user-buttons {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     padding: 4px 0;
+    background-color: #fff;
     .user-button {
-      height: 24px;
-      line-height: 24px;
+      height: 32px;
+      line-height: 32px;
       display: flex;
       align-items: center;
       white-space: nowrap;
-      border-radius: 12px;
-      padding: 6px 8px;
+      padding: 10px 8px 10px 6px;
+      font-size: 12px;
+      color: #000000d9;
       cursor: pointer;
       transition: color .2s ease-in-out, background .2s ease-in-out;
       &:hover {
@@ -195,9 +197,14 @@ const openSetting = () => {
       .button-icon {
         width: 14px;
         height: 14px;
-        margin-right: 4px;
+        margin-top: 2px;
+        margin-right: 2px;
         transition: fill .2s ease-in-out;
       }
+    }
+
+    .user-button + .user-button {
+      border-top: 1px solid #cccccc4f;
     }
   }
 }

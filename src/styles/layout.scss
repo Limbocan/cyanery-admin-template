@@ -1,8 +1,8 @@
 
 .layout-body {
-  --header-z: 1;
-  --content-z: 2;
-  --menu-z: 3;
+  --header-z: 3;
+  --content-z: 1;
+  --menu-z: 2;
 
   width: 100%;
   height: 100%;
@@ -330,6 +330,10 @@
       }
     }
   }
+}
+
+.body-lock-scroll {
+  overflow: hidden;
 }
 
 .layout-header-scroll.layout-body {

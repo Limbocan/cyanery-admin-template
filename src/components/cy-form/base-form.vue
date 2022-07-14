@@ -2,29 +2,29 @@
   <el-form
     ref="baseFormRef"
     v-bind="$attrs"
-    :inline="inline"
-    :model="modelValue"
+    :inline="props.inline"
+    :model="props.modelValue"
     class="base-form"
   >
-    <el-row :gutter="Number(gutter)">
+    <el-row :gutter="Number(props.gutter)">
       <el-col
-        v-for="item in formItems"
+        v-for="item in props.formItems"
         :key="item.prop || item.slot"
         :span="item.span || 0"
       >
         <el-form-item
           :prop="item.prop"
           :label="item.label || ''"
-          :class="fullWidth ? 'item-content-full-width' : ''"
+          :class="props.fullWidth ? 'item-content-full-width' : ''"
         >
           <template v-if="item.type === 'detail'">
             <span class="item-detail">
-              {{ formOption.formatDetail(modelValue[item.prop], item) }}
+              {{ formOption.formatDetail(props.modelValue[item.prop], item) }}
             </span>
           </template>
           <template v-else-if="item.type === 'input' || item.type === 'textarea'">
             <el-input
-              v-model="modelValue[item.prop]"
+              v-model="props.modelValue[item.prop]"
               :type="item.type === 'input' ? 'text' : item.type"
               :placeholder="item.placeholder || '请输入'"
               :disabled="item.disabled || false"
@@ -33,7 +33,7 @@
               :show-word-limit="item.maxlength ? true : false"
               :rows="item.rows"
               clearable
-              @clear="formOption.clearItem(modelValue, item, changeNull)"
+              @clear="formOption.clearItem(props.modelValue, item, props.changeNull)"
               @change="formOption.handChange($event, item)"
               @input="formOption.inputChange($event, item)"
             >
@@ -47,10 +47,10 @@
           </template>
           <template v-else-if="item.type === 'select'">
             <base-select
-              v-model="modelValue[item.prop]"
+              v-model="props.modelValue[item.prop]"
               :class="item.class"
               :option="item"
-              @change="formOption.selectChange($event, item, modelValue)"
+              @change="formOption.selectChange($event, item, props.modelValue)"
             />
             <slot
               v-if="item.selectSuffix"
@@ -59,20 +59,20 @@
           </template>
           <template v-else-if="item.type === 'date'">
             <el-date-picker
-              v-model="modelValue[item.prop]"
+              v-model="props.modelValue[item.prop]"
               :type="'date'"
               :placeholder="item.placeholder || '请选择'"
               :disabled="item.disabled || false"
               :readonly="item.readonly || false"
               :clearable="item.clearable || true"
               :disabled-date="formOption.disabledDate(item.disabledDate) || null"
-              @change="formOption.dateChange($event, modelValue, item)"
+              @change="formOption.dateChange($event, props.modelValue, item)"
             />
           </template>
           <template v-else-if="item.type === 'daterange'">
             <el-date-picker
-              :model-value="(modelValue[item.start] && modelValue[item.end]) ?
-                [modelValue[item.start], modelValue[item.end]] : null"
+              :model-value="(props.modelValue[item.start] && props.modelValue[item.end]) ?
+                [props.modelValue[item.start], props.modelValue[item.end]] : null"
               :type="'daterange'"
               :start-placeholder="item.startPlaceholder || '开始时间'"
               :end-placeholder="item.endPlaceholder || '结束时间'"
@@ -81,7 +81,7 @@
               :clearable="item.clearable || true"
               :disabled-date="formOption.disabledDate(item.disabledDate) || null"
               :format="item.format || 'YYYY-MM-DD'"
-              @update:model-value="formOption.dateRangeChange($event, modelValue, item)"
+              @update:model-value="formOption.dateRangeChange($event, props.modelValue, item)"
             />
           </template>
           <template v-else-if="item.type === 'slot' || item.slot">
@@ -98,20 +98,20 @@
 </template>
 
 <script setup>
-import { ref, defineEmit, watch, useContext } from 'vue'
+import { ref, watch } from 'vue'
 import { init } from './compositions'
 import { ElForm, ElFormItem, ElRow, ElCol, ElInput, ElDatePicker } from 'element-plus'
 import baseSelect from './base-select.vue'
 
 const props = defineProps({
-  modelValue: { type: Object, default: () => {} },
+  modelValue: { type: Object, default: () => ({}) },
   formItems: { type: Array, default: () => [] },
   inline: { type: [String, Boolean], default: true },
   gutter: { type: [Number, String], default: 12 },
   changeNull: { type: [Boolean, String], default: false },
   fullWidth: { type: [Boolean, String], default: false }
 })
-const emit = defineEmit(['value-change', 'select-change', 'hand-change', 'input-change'])
+const emit = defineEmits(['value-change', 'select-change', 'hand-change', 'input-change'])
 const baseFormRef = ref(null)
 const formOption = init(emit, props)
 formOption.initApiSelect(props.formItems, props.modelValue)
@@ -137,8 +137,7 @@ const updateSelect = (prop, data, clear = true) => {
   formOption.updateSelect(props.formItems, props.modelValue, prop, type, data, clear)
 }
 
-const { expose } = useContext()
-expose({
+defineExpose({
   reset,
   validate,
   updateSelect

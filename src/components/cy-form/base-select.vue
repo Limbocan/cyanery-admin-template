@@ -2,39 +2,39 @@
   <el-select
     v-model="state.value"
     v-bind="$attrs"
-    :placeholder="option.placeholder || '请选择'"
-    :disabled="option.disabled || false"
-    :readonly="option.readonly || false"
-    :filterable="option.filterable === false ? false : true"
-    :multiple="option.multiple || false"
-    :multiple-limit="option.limit || 0"
+    :placeholder="props.option.placeholder || '请选择'"
+    :disabled="props.option.disabled || false"
+    :readonly="props.option.readonly || false"
+    :filterable="props.option.filterable === false ? false : true"
+    :multiple="props.option.multiple || false"
+    :multiple-limit="props.option.limit || 0"
     clearable
-    @change="selectChange($event, option)"
+    @change="selectChange($event, props.option)"
   >
     <template
-      v-if="option.prefix"
+      v-if="props.option.prefix"
       #prefix
     >
-      {{ option.prefix }}：
+      {{ props.option.prefix }}：
     </template>
     <el-option
-      v-for="select in option.options"
-      :key="select[option.selectValue || 'value']"
-      :label="select[option.selectLabel || 'keyName']"
-      :value="select[option.selectValue || 'value']"
+      v-for="select in props.option.options"
+      :key="select[props.option.selectValue || 'value']"
+      :label="select[props.option.selectLabel || 'keyName']"
+      :value="select[props.option.selectValue || 'value']"
     />
   </el-select>
 </template>
 
 <script setup>
-import { reactive, watch, defineEmit } from 'vue'
+import { reactive, watch } from 'vue'
 import { ElSelect, ElOption } from 'element-plus'
 
 const props = defineProps({
   modelValue: { type: [String, Number, Array], default: '' },
   option: { type: Object, default: () => {} }
 })
-const emit = defineEmit(['update:modelValue', 'change'])
+const emit = defineEmits(['update:modelValue', 'change'])
 
 const hasOption = () => {
   if (!props.option) return false

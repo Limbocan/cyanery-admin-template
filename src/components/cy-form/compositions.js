@@ -1,6 +1,4 @@
 
-import { getByKeyBatch } from '@/api/system/dictionary'
-import { useStore } from 'vuex'
 import { reactive, computed } from 'vue'
 import dayjs from 'dayjs'
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore'
@@ -8,11 +6,10 @@ import isSameOrAfter from 'dayjs/plugin/isSameOrAfter'
 dayjs.extend(isSameOrBefore)
 dayjs.extend(isSameOrAfter)
 
+const commonDictApi = () => new Promise()
+
 export const init = (emit, props) => {
-  const store = useStore()
-  const state = reactive({
-    projectId: store.state.global.currentProject.id
-  })
+  const state = reactive({})
 
   const initParams = {
     projId: state.projectId,
@@ -50,7 +47,7 @@ export const init = (emit, props) => {
     const keyList = dictItem.map(item => item.selectKey)
     if (keyList.length > 0) {
       const params = { configKeyList: keyList }
-      getByKeyBatch(params).then(res => {
+      commonDictApi(params).then(res => {
         dictItem.forEach(item => {
           item.selectLabel = 'keyName'
           item.selectValue = 'value'

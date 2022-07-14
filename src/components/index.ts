@@ -4,6 +4,7 @@ import KeepAlives from './keep-alives/index.vue'
 import RightClick from './right-click/index.vue'
 import CyInput from './cy-input/index.vue'
 import Drawer from './drawer/index.vue'
+import CyForm from './cy-form/base-form.vue'
 
 export default {
   install(app: App) {
@@ -11,5 +12,6 @@ export default {
     app.component('RightClick', RightClick)
     app.component('CyInput', CyInput)
     app.component('CyDrawer', Drawer)
+    app.component('CyForm', CyForm)
   }
 }

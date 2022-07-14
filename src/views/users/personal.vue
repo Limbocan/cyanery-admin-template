@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div class="page-box full-page-box">
     个人信息
   </div>
 </template>
 
-<script setup>
+<script setup name="Personal">
 
 </script>
 

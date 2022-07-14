@@ -10,6 +10,7 @@
   "dependencies": {
     "axios": "^0.27.2",
     "cyanery-menu": "^1.0.8",
+    "dayjs": "^1.11.3",
     "echarts": "^5.3.3",
     "element-plus": "^2.2.5",
     "vue": "^3.2.25",

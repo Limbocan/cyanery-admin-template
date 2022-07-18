@@ -40,7 +40,7 @@ const pageChanged = () => {
 .el-pagination {
   text-align: right;
 }
-.copote-table + .el-pagination {
+.cy-table + .el-pagination {
   margin-top: 8px;
 }
 </style>

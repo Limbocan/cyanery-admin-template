@@ -1,6 +1,6 @@
 <template>
   <div
-    class="copote-table"
+    class="cy-table"
     :style="style"
   >
     <el-table
@@ -10,7 +10,7 @@
       :row-key="rowKey"
       :border="$attrs.border !== false"
       :stripe="$attrs.stripe !== false"
-      class="copote-table-content"
+      class="cy-table-content"
       highlight-current-row
       fit
       @sort-change="sortChange"
@@ -112,13 +112,7 @@
 </template>
 
 <script setup>
-import {
-  ref,
-  reactive,
-  defineProps,
-  defineEmit,
-  useContext,
-} from 'vue'
+import { ref, reactive } from 'vue'
 import { ElTable, ElTableColumn, ElRadio } from 'element-plus'
 import { setWidth, cellData } from './compositions'
 
@@ -134,7 +128,7 @@ const props = defineProps({
   rowKey: { type: String, default: 'id' },
   style: { type: Object, default: () => {} }
 })
-const emit = defineEmit(['update:modelSelect', 'update:modelRadio', 'title-click', 'sort-change'])
+const emit = defineEmits(['update:modelSelect', 'update:modelRadio', 'title-click', 'sort-change'])
 const tableRef = ref(null)
 const table = reactive({
   tableData: [],
@@ -169,8 +163,8 @@ const toggleRowSelection = (row, select) => {
 const setCurrentRow = (row) => {
   tableRef.value.setCurrentRow(row)
 }
-const { expose } = useContext()
-expose({
+
+defineExpose({
   clearSelect,
   toggleRowSelection,
   setCurrentRow,
@@ -178,10 +172,10 @@ expose({
 </script>
 
 <style lang="scss" scoped>
-.copote-table {
+.cy-table {
   height: 100%;
   width: 100%;
-  .copote-table-content {
+  .cy-table-content {
     width: 100%;
     height: 100%;
     .table-column-title {

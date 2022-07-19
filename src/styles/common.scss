@@ -12,6 +12,10 @@
 
     .el-form-item {
       margin-bottom: 0;
+
+      .el-input__wrapper {
+        width: 100%;
+      }
     }
   }
 
@@ -21,6 +25,19 @@
     margin-top: 12px;
     border-radius: 10px;
     background-color: #fff;
+    overflow: hidden;
+
+    .el-table {
+      .el-table__header {
+        .el-table__cell {
+          background-color: #fafafa;
+
+          .cell {
+            font-weight: lighter;
+          }
+        }
+      }
+    }
   }
 }
 

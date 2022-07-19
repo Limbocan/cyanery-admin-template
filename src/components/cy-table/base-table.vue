@@ -10,9 +10,10 @@
       :row-key="rowKey"
       :border="$attrs.border !== false"
       :stripe="$attrs.stripe !== false"
-      class="cy-table-content"
+      height="100%"
       highlight-current-row
       fit
+      class="cy-table-content"
       @sort-change="sortChange"
       @selection-change="selectionChange"
       @row-click="rowClick"
@@ -83,9 +84,6 @@
             v-else-if="item.type === 'tag'"
             #default="{ row }"
           >
-            <!-- <el-tag :type="colStatus(row[item.prop]).type">
-              {{ row[item.tagName || item.prop + 'Name'] || colStatus(row[item.prop]).name }}
-            </el-tag>-->
             <div :class="colStatus(row[item.prop]).class" />
           </template>
           <template
@@ -118,7 +116,6 @@ import { setWidth, cellData } from './compositions'
 
 const props = defineProps({
   data: { type: Array, default: () => [] },
-  tableOption: { type: Object, default: () => {} },
   columns: { type: Array, default: () => [] },
   api: { type: Function, default: () => {} },
   modelSelect: { type: Array, default: () => [] },
@@ -142,7 +139,7 @@ const titleClick = (row) => {
 const selectionChange = (select) => {
   emit('update:modelSelect', select)
 }
-const sortChange = ({ column, prop, order }) => {
+const sortChange = ({ _column, prop, order }) => {
   const data =
     prop !== null
       ? [{ colName: prop, sortOrder: order.replace('ending', '') }]

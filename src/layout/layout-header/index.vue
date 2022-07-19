@@ -48,7 +48,10 @@
             class="user-box"
           >
             <div class="user-buttons">
-              <div class="user-button">
+              <div
+                class="user-button"
+                @click="goRouter('Personal')"
+              >
                 <svg class="button-icon">
                   <use xlink:href="#cyanery-dingwei" />
                 </svg>
@@ -123,6 +126,11 @@ const logout = () => {
     menuState.clearState()
     router.push({ name: 'Login' })
   }).catch(e => e)
+}
+
+// 路由跳转
+const goRouter = (name) => {
+  router.push({ name })
 }
 
 // 全屏/退出全屏

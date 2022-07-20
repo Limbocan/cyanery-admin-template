@@ -21,7 +21,7 @@
 
   .search-content {
     flex: 1;
-    padding: 12px;
+    padding: 12px 12px 8px 12px;
     margin-top: 12px;
     border-radius: 10px;
     background-color: #fff;
@@ -33,10 +33,21 @@
           background-color: #fafafa;
 
           .cell {
+            color: #4e4c4c;
             font-weight: lighter;
           }
         }
       }
+
+      .el-table__row {
+        .cell {
+          color: #7f7f7f;
+        }
+      }
+    }
+    
+    .el-pagination {
+      float: right;
     }
   }
 }

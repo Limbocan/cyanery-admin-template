@@ -10,7 +10,7 @@
       :row-key="rowKey"
       :border="$attrs.border !== false"
       :stripe="$attrs.stripe !== false"
-      height="100%"
+      :height="props.pagination ? 'calc(100% - 36px)' : '100%'"
       highlight-current-row
       fit
       class="cy-table-content"
@@ -106,6 +106,17 @@
         <slot name="append" />
       </template>
     </el-table>
+    <base-pagination
+      v-if="props.pagination"
+      v-bind="{
+        'onUpdate:pageNum': $attrs['onUpdate:pageNum'],
+        'onUpdate:pageSize': $attrs['onUpdate:pageSize'],
+        'onPageChange': $attrs['onPageChange'],
+      }"
+      :page-num="props.pageNum"
+      :page-size="props.pageSize"
+      :total="props.total"
+    />
   </div>
 </template>
 
@@ -113,6 +124,7 @@
 import { ref, reactive } from 'vue'
 import { ElTable, ElTableColumn, ElRadio } from 'element-plus'
 import { setWidth, cellData } from './compositions'
+import basePagination from './base-pagination.vue'
 
 const props = defineProps({
   data: { type: Array, default: () => [] },
@@ -123,7 +135,11 @@ const props = defineProps({
   showIndex: { type: [String, Boolean], default: false },
   selection: { type: [String, Boolean], default: false },
   rowKey: { type: String, default: 'id' },
-  style: { type: Object, default: () => {} }
+  style: { type: Object, default: () => { } },
+  pagination: { type: Boolean, default: true },
+  pageNum: { type: Number, default: 0 },
+  pageSize: { type: Number, default: 0 },
+  total: { type: Number, default: 0 },
 })
 const emit = defineEmits(['update:modelSelect', 'update:modelRadio', 'title-click', 'sort-change'])
 const tableRef = ref(null)

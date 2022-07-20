@@ -10,7 +10,6 @@
 </template>
 
 <script setup>
-import { defineEmit } from 'vue'
 import { ElPagination } from 'element-plus'
 
 const props = defineProps({
@@ -18,7 +17,7 @@ const props = defineProps({
   pageSize: { type: [Number, String], default: 20 },
   total: { type: [Number, String], default: 0 }
 })
-const emit = defineEmit(['update:pageNum', 'update:pageSize', 'pageChange'])
+const emit = defineEmits(['update:pageNum', 'update:pageSize', 'pageChange'])
 
 const onSizeChange = (val) => {
   emit('update:pageSize', val)

@@ -10,6 +10,10 @@
       <cy-table
         :columns="state.tableColumns"
         :data="state.tableData"
+        :page-num="2"
+        :page-size="20"
+        :total="100"
+        @page-change="pageChange"
       />
     </div>
   </div>
@@ -35,6 +39,10 @@ const state = reactive({
     { label: '状态', prop: 'status', mWidth: 100 }
   ]
 })
+
+const pageChange = (val: any) => {
+  console.log(val, '====')
+}
 
 </script>
 

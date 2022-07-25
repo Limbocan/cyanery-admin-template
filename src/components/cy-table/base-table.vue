@@ -108,14 +108,13 @@
     </el-table>
     <base-pagination
       v-if="props.pagination"
-      v-bind="{
-        'onUpdate:pageNum': $attrs['onUpdate:pageNum'],
-        'onUpdate:pageSize': $attrs['onUpdate:pageSize'],
-        'onPageChange': $attrs['onPageChange'],
-      }"
       :page-num="props.pageNum"
       :page-size="props.pageSize"
       :total="props.total"
+      :small="props.pageSmall"
+      @update:page-num="emit('update:pageNum', $event)"
+      @update:page-size="emit('update:pageSize', $event)"
+      @page-change="emit('pageChange', $event)"
     />
   </div>
 </template>
@@ -140,8 +139,17 @@ const props = defineProps({
   pageNum: { type: Number, default: 0 },
   pageSize: { type: Number, default: 0 },
   total: { type: Number, default: 0 },
+  pageSmall: { type: Boolean, default: true }
 })
-const emit = defineEmits(['update:modelSelect', 'update:modelRadio', 'title-click', 'sort-change'])
+const emit = defineEmits([
+  'update:modelSelect',
+  'update:modelRadio',
+  'title-click',
+  'sort-change',
+  'update:pageNum',
+  'update:pageSize',
+  'pageChange'
+])
 const tableRef = ref(null)
 const table = reactive({
   tableData: [],
@@ -201,15 +209,6 @@ defineExpose({
         white-space: pre-line;
       }
       .el-radio__label { display: none; }
-    }
-    :deep(.oporate) {
-      border: none;
-      background: none;
-      padding: 0;
-      :hover,
-      & :focus {
-        color: #07c160;
-      }
     }
   }
 }

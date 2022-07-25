@@ -3,6 +3,7 @@
     :current-page="props.pageNum"
     :page-size="props.pageSize"
     :total="props.total"
+    :small="props.small"
     layout="total, sizes, prev, pager, next, jumper"
     @size-change="onSizeChange"
     @current-change="onCurrentChange"
@@ -15,7 +16,8 @@ import { ElPagination } from 'element-plus'
 const props = defineProps({
   pageNum: { type: [Number, String], default: 0 },
   pageSize: { type: [Number, String], default: 20 },
-  total: { type: [Number, String], default: 0 }
+  total: { type: [Number, String], default: 0 },
+  small: { type: Boolean, default: true }
 })
 const emit = defineEmits(['update:pageNum', 'update:pageSize', 'pageChange'])
 

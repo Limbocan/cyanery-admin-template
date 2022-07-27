@@ -48,7 +48,7 @@ const state = reactive({
   searchForm: {
     username: '',
     crt_time: dayjs().format('YYYY-MM-DD'),
-    pageNum: 0,
+    pageNum: 1,
     pageSize: 10,
     total: 0,
   },

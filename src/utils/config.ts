@@ -85,7 +85,7 @@ export const getThemeStyle = computed(() => {
   return style
 })
 // 格式化样式变量
-const formatStyleProp = (prop: string) => `--${prop.replace(/[A-Z]/g, '-$&').toLowerCase()}`
+export const formatStyleProp = (prop: string) => `--${prop.replace(/[A-Z]/g, '-$&').toLowerCase()}`
 
 // 系统设置
 export const systermConfig: systermType = reactive({

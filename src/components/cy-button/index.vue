@@ -22,6 +22,7 @@ const props = defineProps({
   class: { type: String || Array, default: '' },
   size: { type: String, default: 'small' },
   label: { type: String, default: '按钮' },
+  loading: { type: Boolean, default: false },
   disabled: { type: Boolean, default: false },
   icon: { type: String, default: '' },
   roles: { type: Array, default: () => ['*'] }
@@ -29,7 +30,7 @@ const props = defineProps({
 const attrs = useAttrs()
 
 const state = reactive({
-  loading: false,
+  loading: props.loading,
   disabled: props.disabled
 })
 
@@ -55,8 +56,8 @@ const buttonClass = computed(() => {
   return {
     'cy-button': true,
     'zoom-out-loading': true,
-    'button-loading': state.loading,
-    'button-disabled': props.disabled || state.disabled,
+    'cy-button-loading': props.loading || state.loading,
+    'cy-button-disabled': props.disabled || state.disabled,
     [buttonType[props.type]]: true,
     [customClass]: true
   }
@@ -75,6 +76,7 @@ const buttonStyle = computed(() => {
 
 // 按钮点击方法
 const clickBtn = () => {
+  if (props.loading || props.disabled || state.loading || state.disabled) return false
   if (attrs.onClick) {
     const isPr = attrs.onClick(state)
     if (isPromise(isPr)) {
@@ -110,6 +112,10 @@ export default {
   overflow: hidden;
   transition: all .2s ease-in-out;
   cursor: pointer;
+
+  &.cy-button-disabled, &.cy-button-loading {
+    cursor: not-allowed;
+  }
 }
 .cy-button + .cy-button {
   margin-left: 8px;

@@ -5,7 +5,7 @@
     @click="clickBtn"
   >
     <slot name="default">
-      <span>{{ buttonLabel }}</span>
+      <span>{{ buttonLabel.label }}</span>
     </slot>
     <div class="spinner" />
   </div>
@@ -17,7 +17,7 @@ import { formatStyleProp } from '@/utils/config'
 import { buttonTheme, buttonType, buttonSize } from './button-setting'
 
 const props = defineProps({
-  theme: { type: String, default: 'primary' },
+  theme: { type: String, default: 'default' },
   type: { type: String, default: 'default' },
   class: { type: String || Array, default: '' },
   size: { type: String, default: 'small' },
@@ -34,40 +34,42 @@ const state = reactive({
   disabled: props.disabled
 })
 
-// 按钮文字
+// 按钮文字-对应主题
 const buttonLabel = computed(() => {
-  if (props.label !== '按钮') return props.label
+  if (props.label !== '按钮') return { label: props.label, theme: false }
   switch (props.type) {
-    case 'search': return '查询'
-    case 'reset': return '重置'
-    case 'add': return '新增'
-    case 'edit': return '编辑'
-    case 'delete': return '删除'
-    case 'detail': return '详情'
-    case 'back': return '返回'
-    case 'close': return '关闭'
-    default: return props.label
+    case 'search': return { label: '查询', theme: 'primary' }
+    case 'reset': return { label: '重置', theme: 'primary' }
+    case 'add': return { label: '新增', theme: 'primary' }
+    case 'edit': return { label: '编辑', theme: 'primary' }
+    case 'delete': return { label: '删除', theme: 'primary' }
+    case 'detail': return { label: '详情', theme: 'primary' }
+    case 'back': return { label: '返回', theme: 'primary' }
+    case 'close': return { label: '关闭', theme: 'primary' }
+    default: return { label: props.label, theme: false }
   }
 })
 
 // 按钮样式类
 const buttonClass = computed(() => {
-  const customClass = typeof props.class === 'string' ? props.class.split(' ') : props.class
-  return {
+  const _style = {
     'cy-button': true,
     'zoom-out-loading': true,
     'cy-button-loading': props.loading || state.loading,
     'cy-button-disabled': props.disabled || state.disabled,
     [buttonType[props.type]]: true,
-    [customClass]: true
   }
+  const customClass = typeof props.class === 'string' ? props.class.split(' ') : props.class
+  customClass.forEach(key => (_style[key] = true))
+  return _style
 })
 
 // 按钮样式属性
 const buttonStyle = computed(() => {
   const styleProp = {
-    ...buttonTheme[props.theme],
-    cyButtonSize: buttonSize[props.size]
+    ...buttonTheme[buttonLabel.value.theme || props.theme],
+    cyButtonSize: buttonSize[props.size]?.size,
+    cyButtonFontSize: buttonSize[props.size]?.font
   }
   const style = {}
   Object.keys(styleProp).forEach(prop => { style[formatStyleProp(prop)] = styleProp[prop] })
@@ -109,13 +111,38 @@ export default {
   line-height: var(--cy-button-size);
   color: var(--cy-button-label-color);
   background-color: var(--cy-button-background-color);
+  font-size: var(--cy-button-font-size);
+  border-radius: 2px;
   overflow: hidden;
+  user-select: none;
   transition: all .2s ease-in-out;
   cursor: pointer;
 
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    opacity: 0;
+    background-color: transparent;
+    transition: all .2s ease-in-out;
+  }
+
+  &:hover::before {
+    opacity: .2;
+    background-color: currentColor;
+  }
+
   &.cy-button-disabled, &.cy-button-loading {
     cursor: not-allowed;
+    &::before {
+      background-color: currentColor;
+      opacity: 0.5;
+    }
   }
+
 }
 .cy-button + .cy-button {
   margin-left: 8px;

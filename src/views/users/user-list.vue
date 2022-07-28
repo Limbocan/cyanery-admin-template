@@ -1,28 +1,27 @@
 <template>
-  <div class="search-page">
+  <div :class="['search-page', state.autoHeight ? '' : 'auto-height']">
     <div class="search-box">
       <cy-form
         v-model="state.searchForm"
         :form-items="state.searchFormItems"
       >
         <div class="search-btns">
-          <div
+          <cy-button
             class="search-btn"
+            type="search"
             @click="getData"
-          >
-            查询
-          </div>
+          />
         </div>
       </cy-form>
     </div>
-    <div :class="['search-content', state.autoHeight ? '' : 'auto-content']">
+    <div class="search-content">
       <div class="tools-box">
-        <div
+        <cy-button
+          :label="state.autoHeight ? '取消自适应高度' : '自适应高度'"
+          theme="success"
           class="tool-button"
           @click="state.autoHeight = !state.autoHeight"
-        >
-          {{ state.autoHeight ? '取消自适应高度' : '自适应高度' }}
-        </div>
+        />
       </div>
       <cy-table
         v-model:page-num="state.searchForm.pageNum"

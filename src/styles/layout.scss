@@ -200,6 +200,7 @@
         vertical-align: middle;
         list-style: none;
         transition: background 0.2s ease-in;
+        user-select: none;
         cursor: pointer;
 
         &:not(.active):hover {

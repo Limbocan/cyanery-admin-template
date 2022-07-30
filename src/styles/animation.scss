@@ -73,9 +73,9 @@
 }
 
 // 按钮loading
-.cy-button.zoom-out-loading {
-  height: var(--cy-button-size);
-  line-height: var(--cy-button-size);
+.cy-button.zoom-out-load {
+  // height: var(--cy-button-size);
+  // line-height: var(--cy-button-size);
   overflow: hidden;
   transition: all .2s ease-in-out;
 

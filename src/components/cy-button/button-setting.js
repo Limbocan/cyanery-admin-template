@@ -26,7 +26,9 @@ export const buttonTheme = {
 export const buttonType = {
   default: '',
   circle: 'cy-button-circle',
-  round: 'cy-button-round'
+  round: 'cy-button-round',
+  ghost: 'cy-button-ghost',
+  text: 'cy-button-text'
 }
 
 // 按钮size

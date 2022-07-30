@@ -55,7 +55,7 @@ const state = reactive({
     { label: '用户名', prop: 'username', type: 'input', span: 6 },
     { label: '创建时间', prop: 'crt_time', type: 'date', span: 6 }
   ],
-  tableData: [{}, {}, {}, {}, {}],
+  tableData: [],
   tableColumns: [
     { type: 'index' },
     { label: '用户名', prop: 'username', mWidth: 120 },
@@ -63,9 +63,11 @@ const state = reactive({
   ]
 })
 
-const getData = () => {
+getData()
+
+function getData() {
   state.loading = true
-  userListApi(state.searchForm).then(res => {
+  return userListApi(state.searchForm).then(res => {
     state.tableData = res.data.result || []
     state.searchForm.total = res.data.total
     state.loading = false

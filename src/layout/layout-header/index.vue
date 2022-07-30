@@ -90,7 +90,7 @@ import { Collapse as cyCollapse } from 'cyanery-menu'
 import { useUserState } from '@/state/user-state'
 import { useMenuState } from '@/state/menu-state'
 import { systermConfig } from '@/utils/config'
-import { ElMessageBox } from 'element-plus'
+// import { ElMessageBox } from 'element-plus'
 import layoutTag from '../layout-tag/index.vue'
 import logo from './logo.vue'
 import layoutSetting from '../layout-setting.vue'
@@ -116,16 +116,19 @@ const collapseChage = () => {
 
 // 退出登录
 const logout = () => {
-  ElMessageBox.confirm('', '确认退出系统？', {
-    confirmButtonText: '确认',
-    cancelButtonText: '取消',
-    type: 'warning',
-    draggable: true,
-  }).then(() => {
-    userState.clearUser()
-    menuState.clearState()
-    router.push({ name: 'Login' })
-  }).catch(e => e)
+  userState.clearUser()
+  menuState.clearState()
+  router.push({ name: 'Login' })
+  // ElMessageBox.confirm('', '确认退出系统？', {
+  //   confirmButtonText: '确认',
+  //   cancelButtonText: '取消',
+  //   type: 'warning',
+  //   draggable: true,
+  // }).then(() => {
+  //   userState.clearUser()
+  //   menuState.clearState()
+  //   router.push({ name: 'Login' })
+  // }).catch(e => e)
 }
 
 // 路由跳转

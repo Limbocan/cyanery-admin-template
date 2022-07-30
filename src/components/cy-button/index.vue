@@ -4,6 +4,11 @@
     :style="buttonStyle"
     @click="clickBtn"
   >
+    <template v-if="props.icon">
+      <svg class="cy-button-icon">
+        <use :xlink:href="'#cyanery-' + props.icon" />
+      </svg>
+    </template>
     <slot name="default">
       <span>{{ buttonLabel.label }}</span>
     </slot>
@@ -21,7 +26,7 @@ const props = defineProps({
   type: { type: String, default: 'default' },
   class: { type: String || Array, default: '' },
   size: { type: String, default: 'small' },
-  label: { type: String, default: '按钮' },
+  label: { type: String, default: '' },
   loading: { type: Boolean, default: false },
   disabled: { type: Boolean, default: false },
   icon: { type: String, default: '' },
@@ -36,7 +41,7 @@ const state = reactive({
 
 // 按钮文字-对应主题
 const buttonLabel = computed(() => {
-  if (props.label !== '按钮') return { label: props.label, theme: false }
+  if (props.label !== '') return { label: props.label, theme: false }
   switch (props.type) {
     case 'search': return { label: '查询', theme: 'primary' }
     case 'reset': return { label: '重置', theme: 'primary' }
@@ -54,7 +59,7 @@ const buttonLabel = computed(() => {
 const buttonClass = computed(() => {
   const _style = {
     'cy-button': true,
-    'zoom-out-loading': true,
+    'zoom-out-load': true,
     'cy-button-loading': props.loading || state.loading,
     'cy-button-disabled': props.disabled || state.disabled,
     [buttonType[props.type]]: true,
@@ -135,11 +140,59 @@ export default {
     background-color: currentColor;
   }
 
+  .cy-button-icon {
+    display: inline-block;
+    height: var(--cy-button-size);
+    width: var(--cy-button-size);
+    fill: var(--cy-button-label-color);
+    transform: scale(0.6);
+  }
+
   &.cy-button-disabled, &.cy-button-loading {
     cursor: not-allowed;
     &::before {
       background-color: currentColor;
       opacity: 0.5;
+    }
+  }
+
+  &.cy-button-circle {
+    border-radius: 50%;
+    width: var(--cy-button-size);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0;
+  }
+
+  &.cy-button-ghost {
+    box-shadow: inset 0 0 0 2px var(--cy-button-background-color);
+    border-radius: 24px;
+    padding: 0 20px;
+
+    &:not(.cy-button-loading):not(.cy-button-disabled) {
+      color: var(--cy-button-background-color);
+      background-color: transparent;
+
+      &:hover {
+        color: var(--cy-button-label-color);
+        background-color: var(--cy-button-background-color);
+      }
+
+      &::before {
+        background-color: transparent;
+      }
+    }
+  }
+
+  &.cy-button-text {
+    color: var(--cy-button-background-color);
+    background-color: transparent;
+    &:hover {
+      text-shadow: 0 0 6px var(--cy-button-background-color);
+    }
+    &:hover::before, &.cy-button-disabled::before, &.cy-button-loading::before {
+      background-color: transparent;
     }
   }
 

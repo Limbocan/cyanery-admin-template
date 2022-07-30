@@ -1,1 +1,0 @@
-import{_ as e,o,c}from"./index.fb49d946.js";const a={},r={class:"page-box full-page-box"};function s(t,_){return o(),c("div",r," \u6743\u9650\u7528\u6237\u53EF\u89C1 ")}var l=e(a,[["render",s]]);export{l as default};

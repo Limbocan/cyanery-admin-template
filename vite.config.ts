@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import viteCompression from 'vite-plugin-compression'
 import VueSetupExtend from 'vite-plugin-vue-setup-extend'
 import eslintPlugin from 'vite-plugin-eslint'
 import ElementPlus from 'unplugin-element-plus/vite'
@@ -25,7 +26,8 @@ export default defineConfig({
     eslintPlugin({
       include: ['src/**/*.js', 'src/**/*.vue', 'src/**/*.ts', 'src/*.js', 'src/*.vue', 'src/*.ts']
     }),
-    ElementPlus()
+    ElementPlus(),
+    viteCompression()
   ],
   build: {
     outDir: './docs'

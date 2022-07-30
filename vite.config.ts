@@ -25,5 +25,8 @@ export default defineConfig({
       include: ['src/**/*.js', 'src/**/*.vue', 'src/**/*.ts', 'src/*.js', 'src/*.vue', 'src/*.ts']
     }),
     ElementPlus()
-  ]
+  ],
+  build: {
+    outDir: './docs'
+  }
 })

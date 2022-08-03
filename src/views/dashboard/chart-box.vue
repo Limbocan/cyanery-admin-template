@@ -7,7 +7,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import * as echarts from 'echarts'
+import echarts from '@/utils/echarts'
 
 const mapChartRef = ref(null)
 let myChart = null

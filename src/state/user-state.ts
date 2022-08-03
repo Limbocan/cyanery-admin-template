@@ -1,6 +1,7 @@
 import { reactive } from 'vue'
 import { getLocal, removeLocal, setLocal } from '../utils/storage'
 import { loginApi } from '../api/login'
+import CSI from 'cyanery-error-monitor'
 
 // localstorage名称
 const USER_STORAGE_NAME = 'user_state'
@@ -10,7 +11,8 @@ const storageUser = getStorageUser()
 const _userState = reactive({
   token: storageUser.token || '',
   userInfo: storageUser.userInfo || {},
-  role: storageUser.role || ''
+  role: storageUser.role || '',
+  errirMonitor: null
 })
 
 export const useUserState = () => {
@@ -63,6 +65,15 @@ export const useUserState = () => {
     _userState.role = ''
     removeLocal(USER_STORAGE_NAME)
   }
+
+  state.errirMonitor = new CSI({
+    feID: 'cyanery', // 项目id，日志区分项目使用
+    key: 6, // 日志查看快捷键
+    report: (lines: any) => {
+      // todo 自定义你的上报逻辑
+      console.log('error lins', lines)
+    }
+  })
 
   return state
 }

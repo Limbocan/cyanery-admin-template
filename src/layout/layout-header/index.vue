@@ -33,6 +33,14 @@
           <use :xlink:href="isFullScreen ? '#cyanery-tuichuquanping' : '#cyanery-quanping'" />
         </svg>
       </div>
+      <div class="header-item">
+        <svg
+          class="header-icon circle-icon"
+          @click="showError"
+        >
+          <use xlink:href="#cyanery-rili" />
+        </svg>
+      </div>
       <div
         class="header-item user-item"
         @mouseenter="openUser"
@@ -151,6 +159,8 @@ document.addEventListener('fullscreenchange', (e) => {
 const openSetting = () => {
   layoutSettingRef.value.openDrawer()
 }
+
+const showError = () => userState.errirMonitor.toggleShow()
 
 const openUser = () => (userShow.value = !userShow.value)
 

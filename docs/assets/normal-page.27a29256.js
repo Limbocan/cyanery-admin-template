@@ -1,0 +1,1 @@
+import{_ as e,o,c as a}from"./index.31cc0290.js";const c={},r={class:"page-box full-page-box"};function s(t,n){return o(),a("div",r," \u6240\u6709\u7528\u6237\u53EF\u89C1 ")}var l=e(c,[["render",s]]);export{l as default};

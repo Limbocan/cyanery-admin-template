@@ -1,5 +1,5 @@
-import CopoteRequest from './request'
+import CyRequest from './request'
 
-export const axios = new CopoteRequest({})
+export const axios = new CyRequest({})
 
 export default axios.request

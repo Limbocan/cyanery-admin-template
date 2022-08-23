@@ -11,13 +11,13 @@ import { notice, logout } from './notice'
 // 取消请求方法
 const CancelToken = axios.CancelToken
 /**
- *  CopoteRequest类
+ *  CyRequest类
  *  @params RequestConfig
  *  实例化参数：AxiosRequestConfigs
  *  service: 服务Api路径
  *  timeout: 超时
  */
-class CopoteRequest implements RequestConfig {
+class CyRequest implements RequestConfig {
   request: RequestInstance
   baseURL = ''
   service = ''
@@ -229,4 +229,4 @@ class CopoteRequest implements RequestConfig {
   }
 }
 
-export default CopoteRequest
+export default CyRequest

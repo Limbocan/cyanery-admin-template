@@ -9,7 +9,7 @@ import {
 /**
  * 接口配置↓
  */
-// 实例化CopoteRequest类接口
+// 实例化CyRequest类接口
 export interface RequestConfig {
   request: RequestInstance // axios实例
   baseURL?: string // 当前baseURL

@@ -334,6 +334,10 @@ var ne=Object.defineProperty,te=Object.defineProperties;var oe=Object.getOwnProp
   min-height: 40px;
 }
 
+.cy-collapse-transition {
+  transition: background var(--cy-menu-animate-time, 0.3s) ease-in-out, height var(--cy-menu-animate-time, 0.3s) ease-in-out, padding-top var(--cy-menu-animate-time, 0.3s) ease-in-out, padding-bottom var(--cy-menu-animate-time, 0.3s) ease-in-out, max-height var(--cy-menu-animate-time, 0.3s) ease-in-out, box-shadow var(--cy-menu-animate-time, 0.3s) ease-in-out;
+}
+
 .popover-enter-active,
 .popover-leave-active {
   transition: all 0.2s;

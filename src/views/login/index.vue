@@ -1,60 +1,75 @@
 <template>
-  <div class="login-content">
-    <div class="login-page">
-      <div class="login-box">
-        <div
-          class="square"
-          style="--i:0;"
+  <div class="login-page">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="icons"
+    >
+      <symbol
+        id="icon-arrow-right"
+        viewBox="0 0 1792 1792"
+      >
+        <path
+          d="M1600 960q0 54-37 91l-651 651q-39 37-91 37-51 0-90-37l-75-75q-38-38-38-91t38-91l293-293H245q-52 0-84.5-37.5T128 1024V896q0-53 32.5-90.5T245 768h704L656 474q-38-36-38-90t38-90l75-75q38-38 90-38 53 0 91 38l651 651q37 35 37 90z"
         />
-        <div
-          class="square"
-          style="--i:1;"
+      </symbol>
+      <symbol
+        id="icon-lock"
+        viewBox="0 0 1792 1792"
+      >
+        <path
+          d="M640 768h512V576q0-106-75-181t-181-75-181 75-75 181v192zm832 96v576q0 40-28 68t-68 28H416q-40 0-68-28t-28-68V864q0-40 28-68t68-28h32V576q0-184 132-316t316-132 316 132 132 316v192h32q40 0 68 28t28 68z"
         />
-        <div
-          class="square"
-          style="--i:2;"
+      </symbol>
+      <symbol
+        id="icon-user"
+        viewBox="0 0 1792 1792"
+      >
+        <path
+          d="M1600 1405q0 120-73 189.5t-194 69.5H459q-121 0-194-69.5T192 1405q0-53 3.5-103.5t14-109T236 1084t43-97.5 62-81 85.5-53.5T538 832q9 0 42 21.5t74.5 48 108 48T896 971t133.5-21.5 108-48 74.5-48 42-21.5q61 0 111.5 20t85.5 53.5 62 81 43 97.5 26.5 108.5 14 109 3.5 103.5zm-320-893q0 159-112.5 271.5T896 896 624.5 783.5 512 512t112.5-271.5T896 128t271.5 112.5T1280 512z"
         />
-        <div
-          class="square"
-          style="--i:3;"
-        />
-        <div
-          class="square"
-          style="--i:4;"
-        />
-        <div
-          class="square"
-          style="--i:5;"
-        />
-        <div class="container">
-          <div
-            class="login-form"
-            @keyup.enter="loginClick"
+      </symbol>
+    </svg>
+    <div class="grid">
+      <div
+        class="form login"
+        @keyup.enter="loginClick"
+      >
+        <div class="form__field">
+          <label for="login__username"><svg class="icon">
+            <use xlink:href="#icon-user" />
+          </svg><span class="hidden">Username</span></label>
+          <input
+            v-model="loginForm.username"
+            autocomplete="username"
+            type="text"
+            name="username"
+            class="form__input"
+            placeholder="Username"
+            required
           >
-            <h2 class="login-title">
-              Cyanery Admin
-            </h2>
-            <div class="input-box">
-              <cy-input
-                v-model="loginForm.username"
-                label="用户名"
-              />
-            </div>
-            <div class="inputBx password">
-              <cy-input
-                v-model="loginForm.password"
-                type="password"
-                label="密码"
-              />
-            </div>
-            <div
-              v-loading="loading"
-              class="login-button"
-              @click="loginClick"
-            >
-              登录
-            </div>
-          </div>
+        </div>
+
+        <div class="form__field">
+          <label for="login__password"><svg class="icon">
+            <use xlink:href="#icon-lock" />
+          </svg><span class="hidden">Password</span></label>
+          <input
+            v-model="loginForm.password"
+            type="password"
+            name="password"
+            class="form__input"
+            placeholder="Password"
+            required
+          >
+        </div>
+
+        <div class="form__field">
+          <input
+            v-loading="loading"
+            type="submit"
+            value="登录"
+            @click="loginClick"
+          >
         </div>
       </div>
     </div>
@@ -98,157 +113,134 @@ const loginClick = () => {
 </script>
 
 <style lang="scss" scoped>
-
 .login-page {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-  background-size: 400% 400%;
-  animation: gradient 10s ease infinite;
-  .login-box {
-    position: relative;
-    .square {
-      position: absolute;
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(5px);
-      box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 15px;
-      animation: square 10s linear infinite;
-      animation-delay: calc(-1s * var(--i));
-
-      &:nth-child(1) {
-        width: 100px;
-        height: 100px;
-        top: -15px;
-        right: -45px;
-      }
-
-      &:nth-child(2) {
-        width: 150px;
-        height: 150px;
-        top: 105px;
-        left: -125px;
-        z-index: 2;
-      }
-
-      &:nth-child(3) {
-        width: 60px;
-        height: 60px;
-        bottom: 85px;
-        right: -45px;
-        z-index: 2;
-      }
-
-      &:nth-child(4) {
-        width: 50px;
-        height: 50px;
-        bottom: 35px;
-        left: -95px;
-      }
-
-      &:nth-child(5) {
-        width: 50px;
-        height: 50px;
-        top: -15px;
-        left: -25px;
-      }
-
-      &:nth-child(6) {
-        width: 85px;
-        height: 85px;
-        top: 165px;
-        right: -155px;
-        z-index: 2;
-      }
-    }
-
-    .container {
-      position: relative;
-      padding: 50px 40px 20px 50px;
-      width: 320px;
-      min-height: 320px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(5px);
-      border-radius: 10px;
-      box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
-
-      &::after {
-        content: "";
-        position: absolute;
-        top: 5px;
-        right: 5px;
-        bottom: 5px;
-        left: 5px;
-        border-radius: 5px;
-        pointer-events: none;
-        background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.1) 2%);
-      }
-
-      .login-form {
-        position: relative;
-        width: 100%;
-        height: 100%;
-
-        .login-title {
-          color: #fff;
-          letter-spacing: 2px;
-          margin-bottom: 30px;
-        }
-
-        .input-box {
-          position: relative;
-          width: 100%;
-          margin-bottom: 20px;
-        }
-
-        .login-button {
-          --el-loading-spinner-size: 26px;
-          margin-top: 40px;
-          padding: 8px 16px;
-          border-radius: 16px;
-          color: #fff;
-          text-align: center;
-          font-size: 14px;
-          background-color: rgba(255, 255, 255, 0.2);
-          box-shadow: 0 5px 15px #0000000d;
-          transition: background .2s ease-in-out;
-          user-select: none;
-          box-shadow: inset 0 0 0 2px #fff;
-          overflow: hidden;
-          cursor: pointer;
-
-          &:hover {
-            background-color: transparent;
-          }
-        }
-      }
-    }
+  background-color: #2c3338;
+  .align {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    place-items: center;
   }
-}
+  .grid {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 20rem;
+  }
+  .hidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
 
-@keyframes gradient {
-  0% {
-    background-position: 0% 50%;
+  .icons {
+    display: none;
   }
-  50% {
-    background-position: 100% 50%;
+
+  .icon {
+    height: 1em;
+    display: inline-block;
+    fill: #606468;
+    fill: #606468;
+    width: 1em;
+    vertical-align: middle;
   }
-  100% {
-    background-position: 0% 50%;
+
+  input {
+    background-image: none;
+    border: 0;
+    color: inherit;
+    font: inherit;
+    margin: 0;
+    outline: 0;
+    padding: 0;
+    transition: background-color 0.3s;
   }
-}
-@keyframes square {
-  0%, 100% {
-    transform: translateY(-20px);
+
+  input[type="submit"] {
+    cursor: pointer;
   }
-  50% {
-    transform: translateY(20px);
+
+  .form {
+    display: grid;
+    grid-gap: 0.875rem;
+    gap: 0.875rem;
+  }
+
+  .form input[type="password"],
+  .form input[type="text"],
+  .form input[type="submit"] {
+    width: 100%;
+  }
+
+  .form__field {
+    display: flex;
+  }
+
+  .form__input {
+    flex: 1;
+  }
+
+  .login {
+    color: #eee;
+  }
+
+  .login label,
+  .login input[type="text"],
+  .login input[type="password"],
+  .login input[type="submit"] {
+    border-radius: 0.25rem;
+    border-radius: 0.25rem;
+    padding: 1rem;
+  }
+
+  .login label {
+    background-color: #363b41;
+    background-color: #363b41;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .login input[type="password"],
+  .login input[type="text"] {
+    background-color: #3b4148;
+    background-color: #3b4148;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+  }
+
+  .login input[type="password"]:focus,
+  .login input[type="password"]:hover,
+  .login input[type="text"]:focus,
+  .login input[type="text"]:hover {
+    background-color: #434a52;
+    background-color: #434a52;
+  }
+
+  .login input[type="submit"] {
+    background-color: #ea4c88;
+    background-color: #ea4c88;
+    color: #eee;
+    color: #eee;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .login input[type="submit"]:focus,
+  .login input[type="submit"]:hover {
+    background-color: #d44179;
+    background-color: #d44179;
   }
 }
 </style>

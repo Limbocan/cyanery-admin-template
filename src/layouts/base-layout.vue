@@ -1,14 +1,14 @@
 <template>
-  <div class="font-chinese antialiased">
+  <div class="font-chinese antialiased min-h-screen">
     <div class="min-h-screen">
       <Navbar />
-      <RouterView />
+      <keepAlives />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { RouterView } from 'vue-router'
+import keepAlives from '@/components/keep-alives.vue'
 import Navbar from './navbar/navbar.vue'
 </script>
 

@@ -1,6 +1,6 @@
 <template>
   <div class="h-100vh bg-base-100">
-    <h1 class="text-base-100" @click="titleClick">Title</h1>
+    <h1 class="text-base-100 bg-primary hover:bg-primary-focus transition-colors" @click="titleClick">Title</h1>
   </div>
 </template>
 

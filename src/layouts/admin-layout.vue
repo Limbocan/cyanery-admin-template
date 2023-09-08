@@ -1,11 +1,11 @@
 <template>
   <div class="font-chinese antialiased">
-    <RouterView />
+    <keepAlives />
   </div>
 </template>
 
 <script setup lang="ts">
-import { RouterView } from 'vue-router'
+import keepAlives from '@/components/keep-alives.vue'
 </script>
 
 <style scoped>

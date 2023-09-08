@@ -15,11 +15,17 @@ import UnoCss from 'unocss/vite'
 export default defineConfig({
   base: './',
   server: {
-    host: 'localhost',
+    host: '0.0.0.0',
     port: 8888,
     open: true,
     https: false,
-    proxy: {},
+    proxy: {
+      '^/api': {
+        target: 'http:localhost:3000',
+        changeOrigin: true,
+        configure: (proxy, option) => {}
+      }
+    },
   },
   plugins: [
     Vue(

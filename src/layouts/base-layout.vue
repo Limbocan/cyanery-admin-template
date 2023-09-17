@@ -9,7 +9,7 @@
 
 <script setup lang="ts">
 import keepAlives from '@/components/keep-alives.vue'
-import Navbar from './navbar/navbar.vue'
+import Navbar from './components/base-navbar.vue'
 </script>
 
 <style scoped>

@@ -4,7 +4,7 @@
       <span class="hidden md:inline">{{ t("Themes") }}</span>
     </div>
     <div
-      class="scrollbar dropdown-content rounded-t-box rounded-b-box top-px mt-16 h-[70vh] max-h-96 w-52 overflow-y-auto bg-base-200 text-base-content shadow-2xl"
+      class="scrollbar dropdown-content rounded-t-box rounded-b-box top-px mt-16 max-h-96 w-52 overflow-y-auto bg-base-200 text-base-content shadow-2xl"
     >
       <div class="grid grid-cols-1 gap-3 p-3" tabindex="0">
         <div

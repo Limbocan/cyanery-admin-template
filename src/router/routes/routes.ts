@@ -5,6 +5,7 @@ import {
   PAGE_NOT_FOUND_ROUTE,
 } from './basic-routes'
 import {
+  NO_LAYOUT_ROUTES,
   BASE_LAYOUT_ROUTES,
   ADMIN_LAYOUT_ROUTES,
 } from './layout'
@@ -21,6 +22,7 @@ const ROUTES = [
   LOGIN_ROUTE,
   BASE_LAYOUT_ROUTES,
   ADMIN_LAYOUT_ROUTES,
+  NO_LAYOUT_ROUTES,
   PAGE_NOT_FOUND_ROUTE,
 ]
 
@@ -28,7 +30,7 @@ const ROUTES = [
 function filterRoute (routes: customRouteRecordRaw[]): customRouteRecordRaw[] {
   const result: customRouteRecordRaw[] = []
   routes.forEach(route => {
-    if (!route.remote && !route.hidden) {
+    if (!route.remote && !route.hidden && route.path) {
       const _route: customRouteRecordRaw & { children: customRouteRecordRaw[] } = { ...route, children: [] }
       if (route.children && route.children.length) {
         const child = filterRoute(route.children)
@@ -40,5 +42,7 @@ function filterRoute (routes: customRouteRecordRaw[]): customRouteRecordRaw[] {
   return result
 }
 const filterRoutes = filterRoute(ROUTES)
+
+console.log(filterRoutes)
 
 export default filterRoutes

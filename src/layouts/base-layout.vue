@@ -1,9 +1,7 @@
 <template>
-  <div class="font-chinese antialiased min-h-screen">
-    <div class="min-h-screen">
-      <Navbar />
-      <keepAlives />
-    </div>
+  <div class="base-layout-root font-chinese antialiased h-full overflow-y-auto">
+    <Navbar />
+    <keepAlives />
   </div>
 </template>
 
@@ -13,5 +11,7 @@ import Navbar from './components/base-navbar.vue'
 </script>
 
 <style scoped>
-
+.base-layout-root {
+  --base-layout-header-height: 3.5rem;
+}
 </style>

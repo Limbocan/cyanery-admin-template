@@ -1,5 +1,5 @@
 <template>
-  <div class="h-120vh bg-base-100">
+  <div class="h-120vh">
     <h1 class="text-base-100 bg-primary hover:bg-primary-focus transition-colors" @click="titleClick">Title</h1>
   </div>
 </template>

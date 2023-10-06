@@ -1,5 +1,5 @@
 <template>
-  <div class="base-layout-header sticky top-0 z-100 h-16 w-full flex justify-between items-center opacity-90 backdrop-blur transition-all duration-100">
+  <div class="base-layout-header sticky top-0 z-100 h-16 w-full flex justify-between items-center bg-base-200 opacity-90 backdrop-blur transition-all duration-100">
     <Logo />
     <ThemeChange />
     <LocalesChange />

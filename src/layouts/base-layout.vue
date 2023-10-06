@@ -1,5 +1,5 @@
 <template>
-  <div class="base-layout-root font-chinese antialiased h-full overflow-y-auto">
+  <div class="base-layout-root bg-base-100 font-chinese antialiased h-full overflow-y-auto">
     <Navbar />
     <keepAlives />
   </div>
@@ -8,6 +8,14 @@
 <script setup lang="ts">
 import keepAlives from '@/components/keep-alives.vue'
 import Navbar from './components/base-navbar.vue'
+import { useColorMode } from '@vueuse/core'
+
+const mode = useColorMode({
+  attribute: 'data-theme',
+  modes: {},
+})
+
+console.log(mode)
 </script>
 
 <style scoped>

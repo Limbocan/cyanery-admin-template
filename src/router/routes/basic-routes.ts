@@ -1,4 +1,4 @@
-import { PageConstant } from '@/config/constant'
+import { PageConstant } from '@/constants/constant'
 
 // 根路由
 export const ROOT_ROUTE = {

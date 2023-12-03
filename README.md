@@ -4,17 +4,10 @@
 
 ``` lang
 # vite-boot
-├─.github                                # Stores GitHub related configuration files.
-│  ├─ISSUE_TEMPLATE                       # GitHub Issue templates
-│  └─workflows                            # GitHub Actions related configuration files
 ├─.husky                                  # Stores Git Hooks related configuration files
 │  └─_                                    # Stores Git Hooks execution scripts
-├─.idea                                   # Stores IntelliJ IDEA related configuration files
-│  ├─codeStyles                           # Stores code formatting rules
-│  └─inspectionProfiles                  # Stores code inspection rules
 ├─.vscode                                 # Stores VS Code related configuration files
 ├─public                                  # Stores static resources required by the web application
-├─README.assets                           # Stores images and other resources used by README.md
 ├─src                                     # Stores the source code of the web application
 │  ├─assets                               # Stores static resources required by the web application
 │  ├─components                           # Stores the components of the web application
@@ -22,7 +15,7 @@
 │  ├─config                               # Stores the configuration files of the web application
 │  │  ├─nprogress                         # Stores the configuration file of the progress bar library NProgress
 │  │  └─unocss                            # Stores the configuration file of the UnoCSS
-│  ├─constant                             # Stores the constant values used in the web application
+│  ├─constants                            # Stores the constant values used in the web application
 │  ├─layouts                              # Stores the layout components of the web application
 │  │  ├─Footer                            # Stores the layout component representing the footer of the page
 │  │  └─Navbar                            # Stores the layout component representing the navigation bar of the page

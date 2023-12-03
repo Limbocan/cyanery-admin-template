@@ -7,6 +7,8 @@ import Inspect from 'vite-plugin-inspect'
 import VueDevTools from 'vite-plugin-vue-devtools'
 import viteCompression from 'vite-plugin-compression'
 
+import RollupPluginTheme from './plugins/rollup-plugin-theme'
+import { themeList } from './src/styles/theme'
 // vite.config.ts
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 import UnoCss from 'unocss/vite'
@@ -28,6 +30,7 @@ export default defineConfig({
     },
   },
   plugins: [
+    RollupPluginTheme(themeList),
     Vue(
       {
         script: {
@@ -56,7 +59,7 @@ export default defineConfig({
     // see unocss.config.ts for config
     UnoCss(
       {
-        configFile: resolve(__dirname, 'src/config/unocss/index.ts'),
+        configFile: resolve(__dirname, 'src/styles/unocss.ts'),
       },
     ),
 

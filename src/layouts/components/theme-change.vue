@@ -40,9 +40,9 @@
 
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
-import { themeList } from '@/config/unocss/themes'
+import { themeList } from '@/styles/theme'
 import { useColorMode } from '@vueuse/core'
-import type { CustomTheme } from '@/config/unocss/themes'
+import type { CustomTheme } from '@/styles/theme'
 
 defineOptions({
   name: 'ThemeChange',

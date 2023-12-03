@@ -2,7 +2,7 @@ import type { RouteRecordRaw } from 'vue-router'
 import { createRouter, createWebHashHistory } from 'vue-router'
 import routes from './routes/routes'
 import routePermission from './permission'
-import NProgress from '@/config/nprogress'
+import NProgress from './nprogress'
 
 export const router = createRouter({
   history: createWebHashHistory(),

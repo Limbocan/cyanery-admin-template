@@ -1,5 +1,5 @@
 <template>
-  <div class="base-layout-root bg-base-100 font-chinese antialiased h-full overflow-y-auto">
+  <div class="base-layout-root">
     <Navbar />
     <keepAlives />
   </div>

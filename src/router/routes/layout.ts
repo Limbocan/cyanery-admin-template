@@ -1,4 +1,4 @@
-import { PageConstant } from '@/config/constant'
+import { PageConstant } from '@/constants/constant'
 
 // base-layout
 const baseLayout = () => import('@/layouts/base-layout.vue')

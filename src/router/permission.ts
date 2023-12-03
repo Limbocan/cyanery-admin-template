@@ -1,5 +1,5 @@
 import type { RouteLocationNormalized, NavigationGuardNext } from 'vue-router'
-import { PageConstant, WHITE_ROUTES } from '@/config/constant'
+import { PageConstant, WHITE_ROUTES } from '@/constants/constant'
 
 export default async (
   to: RouteLocationNormalized,

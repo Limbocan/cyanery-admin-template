@@ -1,2 +1,36 @@
+@import "./theme.scss";
 
+.bg-100 {
+  background-color: var(--bg-100);
+}
 
+.bg-200 {
+  background-color: var(--bg-200);
+}
+
+.bg-300 {
+  background-color: var(--bg-300);
+}
+
+.text-100 {
+  color: var(--text-100);
+}
+
+.text-200 {
+  color: var(--text-200);
+}
+
+.primary {
+  color: var(--primary-100);
+
+  &:hover {
+    color: var(--accent-100);
+  }
+}
+.primary-bg {
+  background-color: var(--primary-100);
+
+  &:hover {
+    background-color: var(--accent-100);
+  }
+}

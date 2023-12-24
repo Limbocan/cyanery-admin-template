@@ -1,5 +1,5 @@
 <template>
-  <div class="base-layout-root">
+  <div class="base-layout-root bg-100">
     <Navbar />
     <keepAlives />
   </div>

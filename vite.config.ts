@@ -7,15 +7,11 @@ import Inspect from 'vite-plugin-inspect'
 import VueDevTools from 'vite-plugin-vue-devtools'
 import viteCompression from 'vite-plugin-compression'
 
-import RollupPluginTheme from './plugins/rollup-plugin-theme'
-import { themeList } from './src/styles/theme'
-// vite.config.ts
-import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 import UnoCss from 'unocss/vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: './',
+  base: process.env.VITE_BASE,
   server: {
     host: '0.0.0.0',
     port: 8888,
@@ -30,7 +26,6 @@ export default defineConfig({
     },
   },
   plugins: [
-    RollupPluginTheme(themeList),
     Vue(
       {
         script: {
@@ -39,14 +34,6 @@ export default defineConfig({
         },
       },
     ),
-
-    // https://github.com/intlify/bundle-tools/tree/main/packages/unplugin-vue-i18n
-    VueI18nPlugin({
-      runtimeOnly: true,
-      compositionOnly: true,
-      fullInstall: true,
-      include: [resolve(__dirname, 'src/locales/**.json')],
-    }),
 
     // https://github.com/antfu/vite-plugin-inspect
     // Visit http://host:port/__inspect/ to see the inspector

@@ -5,14 +5,14 @@
 </template>
 
 <script setup lang="ts" name="login">
-import { PageConstant } from '@/config/constant'
+import { PageConstants } from '@/constants/page-constants'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
 
 const LoginHandler = () => {
   document.cookie = 'auth=test;'
-  router.push(PageConstant.BASE_HOME)
+  router.push(PageConstants.BASE_HOME)
 }
 
 </script>
@@ -20,3 +20,4 @@ const LoginHandler = () => {
 <style scoped>
 
 </style>
+@/constants/page-constants

@@ -1,7 +1,8 @@
 <template>
   <div title="Change Theme" class="dropdown-end dropdown">
+    {{ $t("中文") }}
     <div tabindex="0" class="btn-ghost btn gap-1 normal-case">
-      <span class="hidden md:inline">{{ t("Themes") }}</span>
+      <span class="hidden md:inline">{{ $t("中文") }}</span>
     </div>
     <div
       class="scrollbar dropdown-content rounded-t-box rounded-b-box top-px mt-16 max-h-96 w-52 overflow-y-auto bg-base-200 text-base-content shadow-2xl"
@@ -39,7 +40,6 @@
 </template>
 
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n'
 import { themeList } from '@/styles/theme'
 import { useColorMode } from '@vueuse/core'
 import type { CustomTheme } from '@/styles/theme'
@@ -47,7 +47,7 @@ import type { CustomTheme } from '@/styles/theme'
 defineOptions({
   name: 'ThemeChange',
 })
-const { t } = useI18n()
+
 const mode = useColorMode<CustomTheme>({
   attribute: 'data-theme',
   modes: {},

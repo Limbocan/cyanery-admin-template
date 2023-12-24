@@ -17,7 +17,6 @@
     "forceConsistentCasingInFileNames": true,
     "types": [
       "vite/client",
-      "@intlify/unplugin-vue-i18n/messages"
     ],
     "paths": {
       "@/*": ["src/*"]

@@ -1,7 +1,7 @@
 <template>
   <router-view v-slot="{ Component }">
     <transition>
-      <keep-alive :include="appStore.keepRoutes.values">
+      <keep-alive :include="keepRoutes">
         <component :is="Component" />
       </keep-alive>
     </transition>
@@ -9,5 +9,5 @@
 </template>
 
 <script setup lang="ts">
-import appStore from '@/store'
+import { keepRoutes } from '@/store/keep-routes'
 </script>

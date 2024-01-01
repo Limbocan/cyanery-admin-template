@@ -1,21 +1,14 @@
-import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
-export const keepRoutes = defineStore('keepRoutes', () => {
-  const values = ref <string[]>([])
+export const keepRoutes = ref<string[]>([])
 
-  function addKeepRoute (name: string) {
-    values.value.push(name)
-  }
+const getKeepRouteIndex = (name: string) => keepRoutes.value.findIndex(value => value === name)
 
-  function removeKeepRoute (name: string) {
-    const index = getKeepRouteIndex(name)
-    index > -1 && values.value.splice(index, 1)
-  }
+export const addKeepRoute = (name: string) => keepRoutes.value.push(name)
 
-  function getKeepRouteIndex (name: string) {
-    return values.value.findIndex(value => value === name)
-  }
+export const removeKeepRoute = (name: string) => {
+  const index = getKeepRouteIndex(name)
+  index > -1 && keepRoutes.value.splice(index, 1)
+}
 
-  return { values, addKeepRoute, removeKeepRoute }
-})
+export default keepRoutes

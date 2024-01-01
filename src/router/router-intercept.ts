@@ -4,7 +4,7 @@ import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 import { PageConstants, WHITE_ROUTES } from '@/constants/page-constants'
 
-import appStore from '@/store'
+import { userRole } from '@/store/user-store'
 
 export const createRouterIntercept = (router: Router) => {
   router.beforeEach(async (
@@ -21,7 +21,6 @@ export const createRouterIntercept = (router: Router) => {
       return
     }
     // 权限判断👇
-    const userRole = appStore.userStore?.userRole
     const pageRole = to.meta.role
     if (userRole && pageRole) {
       next({ path: PageConstants.BASE_LOGIN, query: { redirect: encodeURIComponent(to.fullPath) } })

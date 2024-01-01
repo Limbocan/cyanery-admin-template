@@ -1,5 +1,6 @@
 <template>
   <div class="h-120vh">
+    <h1>{{ $t('中文') }}</h1>
     <CyButton label="按钮" @click="clickFn" />
     <h1 v-for="item in 20" :key="item">{{ item }}</h1>
     <h1 class="text-base-100 bg-primary hover:bg-primary-focus transition-colors" @click="titleClick">Title</h1>
@@ -14,9 +15,11 @@ const router = useRouter()
 
 const clickFn = () => {
   const result = new Promise((resolve) => {
-    setTimeout(() => { resolve(true) }, 3000)
+    setTimeout(() => {
+      resolve(true)
+      router.push('/theme')
+    }, 3000)
   })
-  console.log(result)
   return result
 }
 

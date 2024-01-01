@@ -1,12 +1,8 @@
 <template>
-  <button
-    :loading="btnLoading"
-    :disabled="props.disabled"
-    class="cy-button"
-    @click="clickFn"
-  >
+  <button :loading="btnLoading" :disabled="props.disabled" class="cy-button primary" @click="clickFn">
+    <!-- <div v-show="btnLoading" class="cy-button-loader"></div> -->
+    <div class="cy-button-loader"></div>
     <slot name="default">
-      <div>{{ btnLoading ? 'loading' : '' }}</div>
       {{ props.label }}
     </slot>
   </button>
@@ -47,10 +43,41 @@ const clickFn = () => {
 
 <style lang="scss" scoped>
 .cy-button {
-  padding: 0 1rem;
-  line-height: 2;
-  border-radius: .4rem;
-  color: var(--primary-300);
-  background-color: var(--primary-100);
+  --cy-button-size: 1rem;
+
+  position: relative;
+  padding: calc(var(--cy-button-size) * 0.5) var(--cy-button-size);
+  line-height: var(--cy-button-size);
+  border-radius: calc(var(--cy-button-size) * 0.6);
+  text-align: center;
+
+  .cy-button-loader {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: calc(var(--cy-button-size) * 0.6);
+
+    &::before {
+      content: '';
+      display: inline-block;
+      width: var(--cy-button-size);
+      height: var(--cy-button-size);
+      border: calc(var(--cy-button-size) * 0.6) solid var(--primary-120);
+      border-top-color: var(--primary-110);
+      animation: cyBtnLoading 1s linear infinite;
+      border-radius: 100%;
+    }
+  }
+
+  @keyframes cyBtnLoading {
+    to {
+      transform: rotate(360deg);
+    }
+  }
 }
 </style>

@@ -6,7 +6,15 @@ const home = [
     meta: {
       title: 'Home'
     }
-  }
+  },
+  {
+    path: '/theme',
+    name: 'theme',
+    component: () => import('@/pages/home/theme.vue'),
+    meta: {
+      title: 'Theme'
+    }
+  },
 ]
 
 export default home

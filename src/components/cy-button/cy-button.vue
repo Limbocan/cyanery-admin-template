@@ -1,7 +1,6 @@
 <template>
   <button :loading="btnLoading" :disabled="props.disabled" class="cy-button primary" @click="clickFn">
-    <!-- <div v-show="btnLoading" class="cy-button-loader"></div> -->
-    <div class="cy-button-loader"></div>
+    <div v-show="btnLoading" class="cy-button-loader"></div>
     <slot name="default">
       {{ props.label }}
     </slot>
@@ -61,14 +60,16 @@ const clickFn = () => {
     justify-content: center;
     align-items: center;
     border-radius: calc(var(--cy-button-size) * 0.6);
+    background-color: #FFF;
+    opacity: .8;
 
     &::before {
       content: '';
       display: inline-block;
       width: var(--cy-button-size);
       height: var(--cy-button-size);
-      border: calc(var(--cy-button-size) * 0.6) solid var(--primary-120);
-      border-top-color: var(--primary-110);
+      border: calc(var(--cy-button-size) * 0.1) solid var(--primary-120);
+      border-top-color: #FFF;
       animation: cyBtnLoading 1s linear infinite;
       border-radius: 100%;
     }

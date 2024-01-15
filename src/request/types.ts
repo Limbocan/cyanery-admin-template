@@ -1,57 +1,46 @@
-// import {
-//   AxiosRequestConfig,
-//   AxiosInstance,
-//   AxiosPromise,
-//   AxiosInterceptorManager,
-//   AxiosResponse,
-// } from 'axios'
+// 请求类型
+export type TRquestType = 'get' | 'GET' | 'post' | 'POST' | 'put' | 'PUT' | 'delete' | 'DELETE';
 
-// // 继承axios参数接口添加自定义参数
-// export interface AxiosRequestConfigs extends AxiosRequestConfig {
-//   newURL?: string // 切换baseURL
-//   service?: string // 需要切换的服务
-//   cancelRepeat?: boolean // 是否取消重复请求
-//   [propName: string]: unknown
-// }
+// fetch请求参数
+export interface IFetchRequest {
+  url: string;
+  method?: TRquestType;
+  headers?: Record<string, string>;
 
-// // 继承axios响应添加自定义参数-接口
-// export type HttpResponse = AxiosResponse & {
-//   config: AxiosRequestConfigs // 将请求回调config重写为自定义参数AxiosRequestConfigs
-// }
+  // 包含请求的模式（例如，cors、no-cors、same-origin、navigate）。
+  mode?: 'no-cors' | 'cors' | 'same-origin';
 
-// // 重写request实例-配置自定义参数
-// export type RequestInstance = AxiosInstance & {
-//   (config?: AxiosRequestConfigs): AxiosPromise
-//   (url: string, config?: AxiosRequestConfigs): AxiosPromise
-//   // ajax: (config: AxiosRequestConfigs) => AxiosPromise
-//   interceptors: {
-//     request: AxiosInterceptorManager<AxiosRequestConfigs>
-//     response: AxiosInterceptorManager<HttpResponse>
-//   }
-// }
+  // 包含请求的缓存模式（例如，default、reload、no-cache）
+  cache?: 'default' | 'no-cache' | 'reload' | 'force-cache' | 'only-if-cached';
 
-// // 取消请求参数接口
-// export interface CancelParams {
-//   baseURL: string
-//   url: string
-//   api: string
-//   method: string
-//   cancel?: (T: any) => void
-//   canceled?: boolean
-// }
+  // 包含请求的凭据（例如，omit、same-origin、include）。默认是 same-origin。
+  credentials?: 'include' | 'same-origin' | 'omit';
 
-// /**
-//  * 接口配置↓
-//  */
-// // 实例化CyRequest类接口
-// export interface RequestConfig {
-//   request: RequestInstance // axios实例
-//   baseURL?: string // 当前baseURL
-//   service?: string // 当前服务API地址
-//   create: (config: AxiosRequestConfigs) => RequestInstance // 实例化axios方法
-//   // ajax: (config: AxiosRequestConfigs) => AxiosPromise
-//   cancelAll: (showMsg: boolean) => void // 取消当前所有请求的实例方法
-//   cancelRequest: (params: CancelParams) => void // 取消单个请求的实例方法
-// }
+  // 包含如何处理重定向的模式。它可能是 follow、error 或 manual 之一。
+  redirect?: 'manual' | 'follow' | 'error';
 
-export default {}
+  // 包含请求的 referrer 策略（例如，no-referrer）。
+  referrerPolicy?: 'no-referrer' | 'no-referrer-when-downgrade' | 'origin' | 'origin-when-cross-origin' |
+  'same-origin' | 'strict-origin' | 'strict-origin-when-cross-origin' | 'unsafe-url';
+
+  // 主体内容的 ReadableStream。
+  body?: any;
+  // 存储 true 或 false，以指示请求是否仍然未被使用。
+  bodyUsed?: boolean;
+}
+
+// 请求参数
+export interface IRuquestProp extends IFetchRequest {
+  methods?: TRquestType;
+}
+
+// 请求错误
+export interface IRequestError { }
+
+// 响应参数
+export interface IResponseProp<T> {
+  status: number;
+  url: string;
+  headers: Record<string, string>;
+  result: T | null
+}

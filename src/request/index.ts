@@ -1,5 +1,5 @@
-// import CyRequest from './request'
+import CyaneryFetch from './fetch'
 
-// export const axios = new CyRequest({})
+const CyaneryFetchInstance = new CyaneryFetch()
 
-// export default axios.request
+export default CyaneryFetchInstance

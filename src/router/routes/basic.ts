@@ -12,7 +12,7 @@ export const ROOT_ROUTE: RouteRecordRaw = {
 export const LOGIN_ROUTE: RouteRecordRaw = {
   path: PageConstants.BASE_LOGIN,
   name: 'Login',
-  component: () => import('@/pages/login/index.vue'),
+  component: () => import('@/pages/login-pages/login.vue'),
 }
 
 // login

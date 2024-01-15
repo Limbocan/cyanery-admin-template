@@ -12,4 +12,4 @@ export const themeName = computed(
   () => mode.value
 )
 
-export const changeTheme = (value: CustomTheme) => mode.value = value
+export const changeTheme = (value: CustomTheme = mode.value) => mode.value = value

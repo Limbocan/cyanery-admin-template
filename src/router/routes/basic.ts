@@ -19,12 +19,12 @@ export const LOGIN_ROUTE: RouteRecordRaw = {
 export const ERROR_ROUTE: RouteRecordRaw = {
   path: PageConstants.ERROR_PAGE,
   name: 'Error',
-  component: () => import('@/pages/errorPages/error.vue'),
+  component: () => import('@/pages/error-pages/error.vue'),
 }
 
 // 404 on a page
 export const PAGE_NOT_FOUND_ROUTE: RouteRecordRaw = {
   path: '/:path(.*)*',
   name: '404',
-  component: () => import('@/pages/errorPages/404.vue'),
+  component: () => import('@/pages/error-pages/not-found.vue'),
 }

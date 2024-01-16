@@ -5,6 +5,7 @@ import { computed } from 'vue'
 const mode = useColorMode<CustomTheme>({
   attribute: 'data-theme',
   modes: {},
+  // emitAuto: true,
   disableTransition: false,
 })
 

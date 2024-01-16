@@ -47,11 +47,16 @@ const ChangeLocales = (lang: string) => {
     min-width: 3rem;
     padding: .2rem 1.2rem;
     border-radius: 1.2rem;
-    transition: background-color .2s ease-in-out;
+    transition: background-color .2s ease-in-out, color .2s ease-in-out;
 
     &:hover {
-      background-color: var(--bg-200);
+      color: var(--bg-100);
+      background-color: var(--accent-100);
     }
+  }
+
+  .locales-item + .locales-item {
+    margin-top: .2rem;
   }
 }
 </style>

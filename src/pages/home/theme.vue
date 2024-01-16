@@ -12,8 +12,8 @@
       <li :style="{ 'background-color': 'var(--bg-200)' }">--bg-200</li>
       <li :style="{ 'background-color': 'var(--bg-300)' }">--bg-300</li>
     </ul>
-    <div class="example box-100">文字</div>
-    <div class="example box-200">文字</div>
+    <div class="example">文字</div>
+    <div class="example">文字</div>
   </div>
 </template>
 

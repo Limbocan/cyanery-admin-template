@@ -6,18 +6,6 @@ body {
   transition: background-color .2s ease-in-out, color .2s ease-in-out;
 }
 
-.box-100 {
-  color: var(--text-100);
-  background-color: var(--bg-100);
-  box-shadow: 0 0 8px 0 var(--bg-110);
-}
-
-.box-200 {
-  color: var(--text-200);
-  background-color: var(--bg-200);
-  box-shadow: 0 0 8px 0 var(--bg-210);
-}
-
 .primary {
   color: var(--text-100);
   background-color: var(--primary-100);

@@ -1,8 +1,8 @@
 import { resolve } from 'node:path'
 import { defineConfig } from 'vite'
 import Vue from '@vitejs/plugin-vue'
+import { VitePWA } from 'vite-plugin-pwa'
 
-import { visualizer } from 'rollup-plugin-visualizer'
 import Inspect from 'vite-plugin-inspect'
 import VueDevTools from 'vite-plugin-vue-devtools'
 import viteCompression from 'vite-plugin-compression'
@@ -60,13 +60,7 @@ export default defineConfig({
       ext: '.gz' // 文件类型
     }),
 
-    visualizer({
-      gzipSize: true,
-      brotliSize: true,
-      emitFile: false,
-      filename: 'report.html',
-      open: false,
-    }) as any,
+    VitePWA()
   ],
   resolve: {
     alias: {

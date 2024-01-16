@@ -101,8 +101,6 @@
   --text-200: hsl(var(--text-200-h), var(--text-200-s), var(--text-200-l));
 
   --bg-100: hsl(var(--bg-100-h), var(--bg-100-s), var(--bg-100-l));
-  --bg-110: hsl(var(--bg-100-h), var(--bg-100-s), calc(var(--bg-100-l) - 5%));
   --bg-200: hsl(var(--bg-200-h), var(--bg-200-s), var(--bg-200-l));
-  --bg-210: hsl(var(--bg-200-h), var(--bg-200-s), calc(var(--bg-200-l) - 5%));
   --bg-300: hsl(var(--bg-300-h), var(--bg-300-s), var(--bg-300-l));
 }
